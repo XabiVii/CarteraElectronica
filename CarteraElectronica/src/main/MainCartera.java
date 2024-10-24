@@ -6,7 +6,7 @@ public class MainCartera {
 		// TODO Auto-generated method stub
 
 		
-		
+		//del alvaro
 		//del cesar
 		//probando
 	}
