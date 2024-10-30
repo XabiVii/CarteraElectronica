@@ -10,6 +10,11 @@ public class MainCartera {
 		VentanaPrincipal cartera=new VentanaPrincipal();
 		
 		
+		
+		
+		
+		
+		
 	}
 
 }
