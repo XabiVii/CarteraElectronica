@@ -11,10 +11,11 @@ public class VentanaPrincipal extends JFrame{
 	super();
 	
 	setSize(1200,750);
-	setVisible(true);
 	setLocationRelativeTo(null);
-	setTitle("CarteraElectronica");		
-
+	setTitle("CarteraElectronica");
+	setResizable(false);
+	
+	setVisible(true);
 	}
 	
 }
