@@ -11,6 +11,7 @@ public class VentanaPrincipal extends JFrame{
 	setSize(1200,750);
 	setVisible(true);
 	setLocationRelativeTo(null);
+	setTitle("CarteraElectronica");
 		
 	}
 	
