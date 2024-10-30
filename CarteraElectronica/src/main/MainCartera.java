@@ -1,7 +1,5 @@
 package main;
 
-import javax.swing.JFrame;
-
 import gui.VentanaPrincipal;
 
 public class MainCartera {
@@ -10,8 +8,6 @@ public class MainCartera {
 		// TODO Auto-generated method stub
 
 		VentanaPrincipal cartera=new VentanaPrincipal();
-		
-		cartera.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 
