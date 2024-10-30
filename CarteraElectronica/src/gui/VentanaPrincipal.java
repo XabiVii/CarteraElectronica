@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 public class VentanaPrincipal extends JFrame{
@@ -11,8 +13,8 @@ public class VentanaPrincipal extends JFrame{
 	setSize(1200,750);
 	setVisible(true);
 	setLocationRelativeTo(null);
-	setTitle("CarteraElectronica");
-		
+	setTitle("CarteraElectronica");		
+
 	}
 	
 }
