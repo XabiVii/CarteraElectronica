@@ -30,6 +30,7 @@ public class VentanaPrincipal extends JFrame{
 	setResizable(false);
 	setLayout(null);
 	
+	
 	iconoCartera=new ImageIcon("resources/images/CarteraIcono.png").getImage();
 	setIconImage(iconoCartera);
 	

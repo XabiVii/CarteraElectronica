@@ -1,6 +1,7 @@
+# Configuración de Eclipse
 .classpath
 .project
 .settings/
 
-
-/bin/
+# Código compilado
+bin/
