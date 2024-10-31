@@ -9,5 +9,6 @@ public class FormularioIngresos extends  JPanel{
 		setSize(1200,750);
 		setVisible(true);
 		setLocation(null);
+		
 	}
 }
