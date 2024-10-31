@@ -1,9 +1,11 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Container;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -23,6 +25,8 @@ public class FormularioIngresos extends  JPanel{
 		
 		JButton realizar = new JButton();
 		JTextField cantidad = new JTextField();
+		Container contentPane = getRootPane();
+		contentPane.add(new JLabel("Cantidad: "));
 		
 		// Spring Layout
 	}
