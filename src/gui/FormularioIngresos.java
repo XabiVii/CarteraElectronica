@@ -1,51 +1,36 @@
 package gui;
 
-import java.awt.Container;
-
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
+import javax.swing
 
 public class FormularioIngresos extends  JPanel{
 	
 	public FormularioIngresos() {
 		super();
 		
-		JFrame formulario = new JFrame();
-		formulario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(1200, 750);
+		setLayout(null);
+		setLocation(null);
 		
-		// Creación del container
-		Container contentPane = formulario.getContentPane();
-		// Añadimos un SpringLayout al nuevo container
-		SpringLayout layout = new SpringLayout();
-		contentPane.setLayout(layout);
+		// Creamos los componentes
 		
-		// Creamos los componentes que deseamos que estén en la página
-		JButton realizar = new JButton();
-		JTextField cantidad = new JTextField("Introduce aquí la cantidad", 15);
+		// Empezamos con los Labels
 		JLabel labelCantidad = new JLabel("Cantidad: ");
+		JLabel labelFecha = new JLabel("Fecha de realización: ");
+		JLabel labelDescripcion = new JLabel("Descripción: ");
+		JLabel labelMetodoPago = new JLabel("Metodo de pago: ");
+		JLabel labelTipoGasto = new JLabel("Tipo de pago: ");
 		
-		// Añadimos los componentes
-		contentPane.add(labelCantidad);
-		contentPane.add(cantidad);
-		
-		// Movemos los componentes, para que estén mejor colocados
-		layout.putConstraint(SpringLayout.WEST, labelCantidad, 5, SpringLayout.WEST, contentPane);
-		layout.putConstraint(SpringLayout.NORTH, labelCantidad, 5, SpringLayout.NORTH, contentPane);
-		
-		layout.putConstraint(SpringLayout.WEST, cantidad,
-                5,
-                SpringLayout.EAST, labelCantidad);
-		layout.putConstraint(SpringLayout.NORTH, cantidad,
-                5,
-                SpringLayout.NORTH, contentPane);
+		// Vamos con los datos que introduce el usuario:
+		JTextField cantidad = new JTextField("Introduce aquí la cantidad", 15);
+		JTextField fecha = new JTextField("DD/MM/XXXX", 15);
+		JTextField descripcion = new JTextField("Descripción", 15);
 		
 		
-		formulario.pack();
-		formulario.setSize(1200,750);
-		formulario.setVisible(true);
+		// Botón para registrar la información
+		JButton realizar = new JButton();
 	}
 }
