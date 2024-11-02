@@ -17,19 +17,22 @@ public class FormularioIngresos extends  JPanel{
 		JFrame formulario = new JFrame();
 		formulario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		// Creación del container
 		Container contentPane = formulario.getContentPane();
+		// Añadimos un SpringLayout al nuevo container
 		SpringLayout layout = new SpringLayout();
 		contentPane.setLayout(layout);
 		
+		// Creamos los componentes que deseamos que estén en la página
 		JButton realizar = new JButton();
-		
-		
-		
 		JTextField cantidad = new JTextField("Introduce aquí la cantidad", 15);
 		JLabel labelCantidad = new JLabel("Cantidad: ");
+		
+		// Añadimos los componentes
 		contentPane.add(labelCantidad);
 		contentPane.add(cantidad);
 		
+		// Movemos los componentes, para que estén mejor colocados
 		layout.putConstraint(SpringLayout.WEST, labelCantidad, 5, SpringLayout.WEST, contentPane);
 		layout.putConstraint(SpringLayout.NORTH, labelCantidad, 5, SpringLayout.NORTH, contentPane);
 		
@@ -39,6 +42,7 @@ public class FormularioIngresos extends  JPanel{
 		layout.putConstraint(SpringLayout.NORTH, cantidad,
                 5,
                 SpringLayout.NORTH, contentPane);
+		
 		
 		formulario.pack();
 		formulario.setSize(1200,750);
