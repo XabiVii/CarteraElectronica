@@ -1,5 +1,6 @@
 package main;
 
+import gui.FormularioIngresos;
 import gui.VentanaPrincipal;
 
 public class MainCartera {
@@ -10,7 +11,7 @@ public class MainCartera {
 		VentanaPrincipal cartera=new VentanaPrincipal();
 		
 		
-		
+		FormularioIngresos x=new FormularioIngresos();
 		
 		
 		
