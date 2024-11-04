@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -27,9 +28,12 @@ public class FormularioIngresos extends  JPanel{
 		JTextField cantidad = new JTextField("Introduce aquí la cantidad", 15);
 		JTextField fecha = new JTextField("DD/MM/XXXX", 15);
 		JTextField descripcion = new JTextField("Descripción", 15);
-		
+		JComboBox metodoPago = new JComboBox<String>();
+		JComboBox tipoPago = new JComboBox<String>();
 		
 		// Botón para registrar la información
 		JButton realizar = new JButton();
+		
+		
 	}
 }
