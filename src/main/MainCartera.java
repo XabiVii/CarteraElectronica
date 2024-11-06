@@ -1,5 +1,7 @@
 package main;
 
+import javax.swing.JFrame;
+
 import gui.FormularioIngresos;
 import gui.VentanaPrincipal;
 
@@ -9,12 +11,9 @@ public class MainCartera {
 		// TODO Auto-generated method stub
 
 		VentanaPrincipal cartera=new VentanaPrincipal();
-		
-		
-		FormularioIngresos x=new FormularioIngresos();
-		
-		
-		
+
+		cartera.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		
 	}
 

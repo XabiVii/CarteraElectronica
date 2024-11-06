@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.CardLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -8,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import domain.Usuario;
+
 public class CreacionUsuario extends JPanel{
 	 private static final long serialVersionUID = 1L;
 	    
@@ -15,8 +18,10 @@ public class CreacionUsuario extends JPanel{
 	    private JButton aceptar, cancelar;
 	    private Usuario usuario;
 	    private JComboBox<String> diasCB, mesCB, aniosCB;
-	   
-	    public CreacionUsuario() {
+	    private CardLayout cardLayout;
+
+	    public CreacionUsuario(CardLayout cardLayout) {
+	    	this.cardLayout=cardLayout;
 	        setLayout(new GridLayout(7, 2, 10, 10));
 	        
 	        Inombre = new JTextField();
@@ -66,12 +71,12 @@ public class CreacionUsuario extends JPanel{
 	        //botones
 	        add(aceptar);
 	        add(cancelar);
-
-	        //Aceptar
-	        aceptar.addActionListener(e -> {
-	           usuario = new Usuario(Inombre.getText(), Iapellido.getText(), 
-	            		Icorreo.getText(), Icontrasena.getText(), Iid.getText()); //todo lo que conlleva un usuario
+	        
+	        getCancelarButton().addActionListener(e -> {
+	            cardLayout.show(getParent(), "pUser"); //vuelve pa atras
 	        });
+
+
 	    }
 
 	    public JButton getCancelarButton() {

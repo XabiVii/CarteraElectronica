@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.CardLayout;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -14,12 +15,18 @@ public class VentanaPrincipal extends JFrame{
 	
 	
 	private PanelTabla panelTabla;
+	private PanelUserSelection panelUser;
+	private CreacionUsuario panelCreacionUsuario;
 	
 	private final String TITULO="Cartera Electronica";
 
 	private Image iconoCartera;
 	
 	private String rutaResources="resources/";
+	
+	private CardLayout navegacion;
+	
+
 	
 	public VentanaPrincipal() {
 	super();
@@ -28,27 +35,40 @@ public class VentanaPrincipal extends JFrame{
 	setLocationRelativeTo(null);
 	setTitle(getTITULO());
 	setResizable(false);
-	setLayout(null);
+	
+	navegacion=new CardLayout();
+	setLayout(navegacion);
+	
+
+	
+	añadirPaneles();
+	
 	
 	
 	iconoCartera=new ImageIcon("resources/images/CarteraIcono.png").getImage();
 	setIconImage(iconoCartera);
-	
-	añadirPaneles();
-	PanelUserSelection panel = new PanelUserSelection();
-    add(panel);
 	setVisible(true);
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	
 	private void añadirPaneles() {
+		panelUser = new PanelUserSelection(navegacion);
+		
+		panelCreacionUsuario = new CreacionUsuario(navegacion);
+
+		
 		panelTabla=new PanelTabla();
 		
-		
-		
-		
+		navegacion.addLayoutComponent(panelTabla, "pTabla");
+		navegacion.addLayoutComponent(panelUser, "pUser");
+		navegacion.addLayoutComponent(panelCreacionUsuario, "pCrea");
+
 		add(panelTabla);
+		add(panelUser);
+		add(panelCreacionUsuario);
+
+
+		navegacion.show(getContentPane(), "pUser");
 	}
 
 

@@ -13,20 +13,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class PanelUserSelection extends JPanel{
+	
 	private static final long serialVersionUID = 1L;
     private CardLayout cardLayout;
     private JPanel cardPanel;
-    private CreacionUsuario panelCreacionUsuario;
 
-    public PanelUserSelection() {
+    public PanelUserSelection(CardLayout navegacion) {
     	
+    	setSize(1200,750);
     	setLayout(new BorderLayout()); //el contenedor
         JButton registro = new JButton("Inicio Sesión");
         registro.setFont(new Font("Arial", Font.BOLD, 14));
         registro.setBackground(new Color(30, 144, 255));
         registro.setForeground(Color.WHITE);
         
-        cardLayout = new CardLayout();
+        cardLayout = navegacion;
         cardPanel = new JPanel(cardLayout);
         
         //crear el panel de selección de usuario (Primer panel)
@@ -34,7 +35,7 @@ public class PanelUserSelection extends JPanel{
         panelSeleccionUsuario.setBackground(new Color(224, 255, 255));
         
         //cargar la imagen para el botón
-        ImageIcon nuevoUsuarioIcon = new ImageIcon("imagenes/Webp.net-resizeimage.png"); 
+        ImageIcon nuevoUsuarioIcon = new ImageIcon("resources/images/Webp.net-resizeimage.png"); 
         JButton nuevoUsuarioFotoPrueba = new JButton(nuevoUsuarioIcon); //crea el botón con la imagen
         nuevoUsuarioFotoPrueba.setPreferredSize(new Dimension(100, 100)); //tamaño del boton que tiene la imagen
         nuevoUsuarioFotoPrueba.setBackground(new Color(245, 245, 245)); //sin borde visible para mas elegancia (ni se nota)
@@ -45,33 +46,36 @@ public class PanelUserSelection extends JPanel{
         panelSeleccionUsuario.add(nuevoUsuarioFotoPrueba);
         
         //crear el panel de añadir texto
-        panelCreacionUsuario = new CreacionUsuario(); //segundo panel
-        panelCreacionUsuario.setBackground(Color.WHITE);
+
         
         //al CardLayout le añado los dos panales
         cardPanel.add(panelSeleccionUsuario, "SeleccionUsuario"); //primer panel
-        cardPanel.add(panelCreacionUsuario, "CreacionUsuario"); //segundo panel
 
         //Nuevo Usuario
         nuevoUsuarioFotoPrueba.addActionListener(e -> {
-            cardLayout.show(cardPanel, "CreacionUsuario"); 
+            cardLayout.show(getParent(), "pCrea"); 
         });
         
         //Cancelar
-        panelCreacionUsuario.getCancelarButton().addActionListener(e -> {
+       /* panelCreacionUsuario.getCancelarButton().addActionListener(e -> {
             cardLayout.show(cardPanel, "SeleccionUsuario"); //vuelve pa atras
-        });
+        });*/
+        
+        
         
         registro.addActionListener(e -> {
+            cardLayout.show(getParent(), "pTabla"); //vuelve pa atras
+        	/*
             String username = JOptionPane.showInputDialog(null, "username:");
             String password = JOptionPane.showInputDialog(null, "password:");
-            if (username.equals("usuario") && password.equals("contraseña")) {
+            if (username!=null && password!=null && username.equals("usuario") && password.equals("contraseña")) {
                 JOptionPane.showMessageDialog(null, "Bienvenido");//esto es para probar de cara a lo proximo
             } else {
                 JOptionPane.showMessageDialog(null, "Invalido");
-            }
+            }*/
         });
         add(cardPanel,BorderLayout.CENTER); 
+        
     }
     
 }
