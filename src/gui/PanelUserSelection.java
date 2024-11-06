@@ -71,5 +71,7 @@ public class PanelUserSelection extends JPanel{
                 JOptionPane.showMessageDialog(null, "Invalido");
             }
         });
+        add(cardPanel,BorderLayout.CENTER); 
     }
+    
 }
