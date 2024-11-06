@@ -37,6 +37,15 @@ public class CreacionUsuario extends JPanel{
 	        aniosCB = new JComboBox<>();
 	        
 	       //llenarlo con los dias y los meses
+	        for (int i = 1; i <= 31; i++) { //dias del 1 al 31, tendria que poner algo como que cuando eliges febrero solo se pueda 28
+	            diasCB.addItem(String.valueOf(i));
+	        }
+	        
+	        for (int i = 1945; i <= 2006; i++) { //años del 1945, una fecha limite que he querido poner pero se puede cambiar,
+	            aniosCB.addItem(String.valueOf(i)); // hasta el 2006 que son el año que cumplen 18 este año
+	        }
+	        
+	        
 	        
 	        add(new JLabel("Nombre"));
 	        add(Inombre);
