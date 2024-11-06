@@ -41,7 +41,12 @@ public class PanelTabla extends JPanel {
 
 		initTabla();
 		
-		modeloDatos.addRow(new Object[] { "11/11", "700", "Ocio", "Gasto","1000" });
+		modeloDatos.addRow(new Object[] { "11/11", 700, "Ocio", "Gasto",1000 });
+		modeloDatos.addRow(new Object[] { "03/12", 50, "Comida", "Gasto", 950});
+		modeloDatos.addRow(new Object[] { "05/02", 1400, "Nomina", "Ingreso",2350 });
+		modeloDatos.addRow(new Object[] { "27/04", 10, "Bizum", "Gasto",2360 });
+		modeloDatos.addRow(new Object[] { "21/6", 850, "Alquiler", "Gasto",1510 });
+		
 
 		scrollPaneTabla = new JScrollPane(tabla);
 		scrollPaneTabla.setBorder(new TitledBorder("Semana1"));
@@ -96,19 +101,9 @@ public class PanelTabla extends JPanel {
 					} else {
 						c = new Color(250, 249, 249);
 					}
-					if (value.toString() == "MARVEL") {
-						JLabel x = new JLabel("a");
-						x.setOpaque(true);
-						x.setBackground(c);
-						return x;
-					} else if (value.toString() == "DC") {
-						JLabel x = new JLabel("a");
-						x.setOpaque(true);
-						x.setBackground(c);
-						return x;
-					} else {
+
 						JLabel x = new JLabel(value.toString());
-						if (value instanceof Integer) {
+						if (value instanceof Integer || column==0) {
 							x.setHorizontalAlignment(0);
 						} else {
 							x.setHorizontalAlignment(2);
@@ -116,7 +111,7 @@ public class PanelTabla extends JPanel {
 						x.setOpaque(true);
 						x.setBackground(c);
 						return x;
-					}
+					
 
 				} else {
 					Color c;
@@ -125,20 +120,9 @@ public class PanelTabla extends JPanel {
 					} else {
 						c = new Color(190, 227, 219);
 					}
-					if (value.toString() == "MARVEL") {
-						JLabel x = new JLabel("");
-						x.setOpaque(true);
-						x.setBackground(c);
-						return x;
-					} else if (value.toString() == "DC") {
-						JLabel x = new JLabel("a");
-						x.setOpaque(true);
-						x.setBackground(c);
-						return x;
-					} else {
 						JLabel x = new JLabel(value.toString());
 
-						if (value instanceof Integer) {
+						if (value instanceof Integer || column==0) {
 							x.setHorizontalAlignment(0);
 						} else {
 							x.setHorizontalAlignment(2);
@@ -146,14 +130,13 @@ public class PanelTabla extends JPanel {
 						x.setOpaque(true);
 						x.setBackground(c);
 						return x;
-					}
+					
 				}
 
 			}
 		};
 		tabla.setRowHeight(26);
 		tabla.setDefaultRenderer(Object.class, tableCell);
-
 		tabla.getTableHeader().setDefaultRenderer(new TableCellRenderer() {
 
 			@Override
@@ -161,16 +144,9 @@ public class PanelTabla extends JPanel {
 					boolean hasFocus, int row, int column) {
 
 				JLabel x = new JLabel(value.toString());
-/*
-				if (table.getValueAt(1, column) instanceof String) {
-					x.setHorizontalAlignment(2);
+				x.setHorizontalAlignment(0);
 
-				} else {
-					x.setHorizontalAlignment(0);
-
-				}
-				return x;
-			}*/return x;}
+			return x;}
 		});
 		// Se modifica el modelo de selección de la tabla para que se pueda selecciona
 		// únicamente una fila
