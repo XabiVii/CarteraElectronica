@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -15,10 +16,12 @@ import domain.TiposPago;
 public class FormularioIngresos extends  JPanel{
 	
 		private GridLayout gridLayout;
+		private CardLayout cardLayout;
 		
-	public FormularioIngresos() {
-		
+	public FormularioIngresos(CardLayout cardLayout) {
 		super();
+		
+		this.cardLayout=cardLayout;
 		
 		setSize(1200, 750);
 		
@@ -63,6 +66,8 @@ public class FormularioIngresos extends  JPanel{
 		
 		JButton confirmar=new JButton("Confirmar");
 		JButton cancelar=new JButton("Cancelar");
+		
+		cancelar.addActionListener(e -> cardLayout.show(getParent(), "pTabla"));
 		
 		add(labelOpciones);
 		add(opciones);

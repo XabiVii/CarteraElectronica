@@ -17,7 +17,8 @@ public class VentanaPrincipal extends JFrame{
 	private PanelTabla panelTabla;
 	private PanelUserSelection panelUser;
 	private CreacionUsuario panelCreacionUsuario;
-	
+	private FormularioIngresos panelNuevoOpe;
+
 	private final String TITULO="Cartera Electronica";
 
 	private Image iconoCartera;
@@ -34,7 +35,6 @@ public class VentanaPrincipal extends JFrame{
 	setSize(1200,750);
 	setLocationRelativeTo(null);
 	setTitle(getTITULO());
-	setResizable(false);
 	
 	navegacion=new CardLayout();
 	setLayout(navegacion);
@@ -47,6 +47,7 @@ public class VentanaPrincipal extends JFrame{
 	
 	iconoCartera=new ImageIcon("resources/images/CarteraIcono.png").getImage();
 	setIconImage(iconoCartera);
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	setVisible(true);
 	}
 	
@@ -56,16 +57,20 @@ public class VentanaPrincipal extends JFrame{
 		
 		panelCreacionUsuario = new CreacionUsuario(navegacion);
 
+		panelTabla=new PanelTabla(navegacion);
 		
-		panelTabla=new PanelTabla();
+		panelNuevoOpe=new FormularioIngresos(navegacion);
 		
 		navegacion.addLayoutComponent(panelTabla, "pTabla");
 		navegacion.addLayoutComponent(panelUser, "pUser");
 		navegacion.addLayoutComponent(panelCreacionUsuario, "pCrea");
+		navegacion.addLayoutComponent(panelNuevoOpe, "pNuevo");
+
 
 		add(panelTabla);
 		add(panelUser);
 		add(panelCreacionUsuario);
+		add(panelNuevoOpe);
 
 
 		navegacion.show(getContentPane(), "pUser");
