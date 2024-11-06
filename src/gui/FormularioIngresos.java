@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.CardLayout;
 import java.awt.GridLayout;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -69,5 +68,6 @@ public class FormularioIngresos extends  JFrame{
 		jpanel.add(metodoPago);
 		jpanel.add(labelTipoPago);
 		jpanel.add(tipoPago);
+		
 	}
 }
