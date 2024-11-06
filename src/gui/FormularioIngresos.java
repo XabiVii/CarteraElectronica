@@ -30,7 +30,7 @@ public class FormularioIngresos extends  JFrame{
 		cardLayout = new CardLayout();
 		jpanel = new JPanel();
 		gridLayout = new GridLayout();
-		setLayout(null);
+		jpanel.setLayout(gridLayout);
 		setLocation(null);
 		
 		// Creamos los componentes
@@ -42,7 +42,7 @@ public class FormularioIngresos extends  JFrame{
 		JLabel labelFecha = new JLabel("Fecha de realización: ");
 		JLabel labelDescripcion = new JLabel("Descripción: ");
 		JLabel labelMetodoPago = new JLabel("Metodo de pago: ");
-		JLabel labelTipoGasto = new JLabel("Tipo de pago: ");
+		JLabel labelTipoPago = new JLabel("Tipo de pago: ");
 		
 		// Vamos con los datos que introduce el usuario:
 		
@@ -53,13 +53,21 @@ public class FormularioIngresos extends  JFrame{
 		JComboBox metodoPago = new JComboBox<>(MetodosPago.values());
 		JComboBox tipoPago = new JComboBox<>(TiposPago.values());
 		
-
-
-		
 		// Botón para registrar la información
 		
 		JButton realizar = new JButton();
 		
-		
+		jpanel.add(labelOpciones);
+		jpanel.add(opciones);
+		jpanel.add(labelCantidad);
+		jpanel.add(cantidad);
+		jpanel.add(labelFecha);
+		jpanel.add(fecha);
+		jpanel.add(labelDescripcion);
+		jpanel.add(descripcion);
+		jpanel.add(labelMetodoPago);
+		jpanel.add(metodoPago);
+		jpanel.add(labelTipoPago);
+		jpanel.add(tipoPago);
 	}
 }
