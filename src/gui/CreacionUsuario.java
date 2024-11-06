@@ -45,8 +45,6 @@ public class CreacionUsuario extends JPanel{
 	            aniosCB.addItem(String.valueOf(i)); // hasta el 2006 que son el año que cumplen 18 este año
 	        }
 	        
-	        
-	        
 	        add(new JLabel("Nombre"));
 	        add(Inombre);
 	        add(new JLabel("Apellido"));
@@ -57,6 +55,15 @@ public class CreacionUsuario extends JPanel{
 	        add(Iid);
 	        add(new JLabel("Email"));
 	        add(Icorreo);
+	        
+	        add(new JLabel("Fecha de nacimiento"));
+	        JPanel fechaPanel = new JPanel(new GridLayout(1, 3, 5, 5));
+	        fechaPanel.add(diasCB);
+	        fechaPanel.add(mesCB);
+	        fechaPanel.add(aniosCB);
+	        add(fechaPanel);
+	        
+	        //botones
 	        add(aceptar);
 	        add(cancelar);
 
