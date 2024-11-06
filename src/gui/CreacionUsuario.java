@@ -3,6 +3,7 @@ package gui;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -13,9 +14,10 @@ public class CreacionUsuario extends JPanel{
 	    private JTextField Inombre, Iapellido, Iid, Icorreo, Icontrasena;
 	    private JButton aceptar, cancelar;
 	    private Usuario usuario;
+	    private JComboBox<String> diasCB, mesCB, aniosCB;
 	   
 	    public CreacionUsuario() {
-	        setLayout(new GridLayout(6, 2, 10, 10));
+	        setLayout(new GridLayout(7, 2, 10, 10));
 	        
 	        Inombre = new JTextField();
 	        Iapellido = new JTextField();
@@ -25,7 +27,17 @@ public class CreacionUsuario extends JPanel{
 	        
 	        aceptar = new JButton("Aceptar");
 	        cancelar = new JButton("Cancelar");
-
+	        
+	        //año, mes y dia para la barrita
+	        diasCB = new JComboBox<>();
+	        mesCB = new JComboBox<>(new String[] {
+	                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+	                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+	            });
+	        aniosCB = new JComboBox<>();
+	        
+	       //llenarlo con los dias y los meses
+	        
 	        add(new JLabel("Nombre"));
 	        add(Inombre);
 	        add(new JLabel("Apellido"));
