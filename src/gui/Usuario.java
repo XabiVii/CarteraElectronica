@@ -1,5 +1,7 @@
 package gui;
 
+import java.time.LocalDate;
+
 public class Usuario {
 	
 	private String nombre;
@@ -7,14 +9,15 @@ public class Usuario {
     private String id;
     private String correoElectronico;
     private String contrasena;
-    
+    private LocalDate fechaNacimiento;
 
-    public Usuario(String nombre, String apellido, String correoElectronico, String contrasena, String id) {
+    public Usuario(String nombre, String apellido, String correoElectronico, String contrasena, String id, LocalDate fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correoElectronico = correoElectronico;
         this.contrasena = contrasena;
         this.id = id;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getNombre() {
@@ -59,12 +62,21 @@ public class Usuario {
 		this.correoElectronico = correoElectronico;
 	}
     
+	public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+	
     @Override
     public String toString() {
         return "Usuario{" +
-                "nombre= " + nombre + '\'' +
-                ", apellido= " + apellido + '\'' +
-                ", correoElectronico= " + correoElectronico + 
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", correoElectronico='" + correoElectronico + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
                 '}';
     }
 
