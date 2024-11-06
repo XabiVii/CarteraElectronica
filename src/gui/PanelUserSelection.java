@@ -9,6 +9,7 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class PanelUserSelection extends JPanel{
@@ -59,6 +60,16 @@ public class PanelUserSelection extends JPanel{
         //Cancelar
         panelCreacionUsuario.getCancelarButton().addActionListener(e -> {
             cardLayout.show(cardPanel, "SeleccionUsuario"); //vuelve pa atras
+        });
+        
+        registro.addActionListener(e -> {
+            String username = JOptionPane.showInputDialog(null, "username:");
+            String password = JOptionPane.showInputDialog(null, "password:");
+            if (username.equals("usuario") && password.equals("contraseña")) {
+                JOptionPane.showMessageDialog(null, "Bienvenido");//esto es para probar de cara a lo proximo
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalido");
+            }
         });
     }
 }
