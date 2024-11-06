@@ -12,6 +12,7 @@ public class CreacionUsuario extends JPanel{
 	    
 	    private JTextField Inombre, Iapellido, Iid, Icorreo, Icontrasena;
 	    private JButton aceptar, cancelar;
+	    private Usuario usuario;
 	   
 	    public CreacionUsuario() {
 	        setLayout(new GridLayout(6, 2, 10, 10));
@@ -40,8 +41,8 @@ public class CreacionUsuario extends JPanel{
 
 	        //Aceptar
 	        aceptar.addActionListener(e -> {
-	           // usuario = new Usuario(Inombre.getText(), Iapellido.getText(), 
-	            		//Icorreo.getText(), Icontrasena.getText(), Iid.getText()); //todo lo que conlleva un usuario
+	           usuario = new Usuario(Inombre.getText(), Iapellido.getText(), 
+	            		Icorreo.getText(), Icontrasena.getText(), Iid.getText()); //todo lo que conlleva un usuario
 	        });
 	    }
 
@@ -49,9 +50,9 @@ public class CreacionUsuario extends JPanel{
 	        return cancelar;
 	    }
 
-	    //public Usuario getUsuario() {
-	        //return usuario;
-	    //}
+	    public Usuario getUsuario() {
+	        return usuario;
+	    }
 	    
 	    
 }
