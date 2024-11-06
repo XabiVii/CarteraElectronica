@@ -9,7 +9,7 @@ public class CreacionUsuario extends JPanel{
 	    
 	    private JTextField Inombre, Iapellido, Iid, Icorreo, Icontrasena;
 	    private JButton aceptar, cancelar;
-	    private Usuario usuario;
+	   
 	    
 	    
 }
