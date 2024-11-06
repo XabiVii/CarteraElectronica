@@ -11,6 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import domain.IngresoGasto;
+import domain.MetodosPago;
+import domain.TiposPago;
+
 public class FormularioIngresos extends  JFrame{
 	
 		private CardLayout cardLayout;
@@ -32,6 +36,7 @@ public class FormularioIngresos extends  JFrame{
 		// Creamos los componentes
 		
 		// Empezamos con los Labels
+		
 		JLabel labelOpciones = new JLabel("Ingreso / Gasto");
 		JLabel labelCantidad = new JLabel("Cantidad: ");
 		JLabel labelFecha = new JLabel("Fecha de realización: ");
@@ -40,35 +45,19 @@ public class FormularioIngresos extends  JFrame{
 		JLabel labelTipoGasto = new JLabel("Tipo de pago: ");
 		
 		// Vamos con los datos que introduce el usuario:
-		JComboBox opciones = new JComboBox<String>();
+		
+		JComboBox opciones = new JComboBox<>(IngresoGasto.values());
 		JTextField cantidad = new JTextField("Introduce aquí la cantidad", 15);
 		JTextField fecha = new JTextField("DD/MM/XXXX", 15);
 		JTextField descripcion = new JTextField("Descripción", 15);
-		JComboBox metodoPago = new JComboBox<String>();
-		JComboBox tipoPago = new JComboBox<String>();
+		JComboBox metodoPago = new JComboBox<>(MetodosPago.values());
+		JComboBox tipoPago = new JComboBox<>(TiposPago.values());
 		
-		// Creamos arrayList con las opciones: Ingreso y gasto
-		ArrayList<String> ig = new ArrayList<String>();
-		ig.add("Ingreso");
-		ig.add("Gasto");
-		
-		// Creamos ArrayList con todos los métodos de pago
-		ArrayList<String> metodos = new ArrayList<String>();
-		metodos.add("Metálico");
-		metodos.add("Domiciliación");
-		metodos.add("Cheque");
-		metodos.add("Bizum");
-		metodos.add("Tarjeta");
-		
-		
-		// Creamos un ArrayList con todos los tipos de pago disponibles		
-		ArrayList<String> tiposPago = new ArrayList<String>();
-		tiposPago.add("Ocio");
-		tiposPago.add("Comida");
-		tiposPago.add("Seguros");		
-		
+
+
 		
 		// Botón para registrar la información
+		
 		JButton realizar = new JButton();
 		
 		
