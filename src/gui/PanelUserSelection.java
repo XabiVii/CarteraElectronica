@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,25 +20,26 @@ public class PanelUserSelection extends JPanel{
     public PanelUserSelection() {
     	
     	setLayout(new BorderLayout()); //el contenedor
-        JButton registro = new JButton("Prueba");
+        JButton registro = new JButton("Inicio Sesión");
+        registro.setFont(new Font("Arial", Font.BOLD, 14));
+        registro.setBackground(new Color(30, 144, 255));
+        registro.setForeground(Color.WHITE);
         
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
         
         //crear el panel de selección de usuario (Primer panel)
         JPanel panelSeleccionUsuario = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton nuevoUsuarioButton = new JButton("Nuevo Usuario");
-        panelSeleccionUsuario.setBackground(Color.GREEN);
+        panelSeleccionUsuario.setBackground(new Color(224, 255, 255));
         
-        // Cargar la imagen para el botón "Nuevo Usuario"
+        //cargar la imagen para el botón
         ImageIcon nuevoUsuarioIcon = new ImageIcon("imagenes/Webp.net-resizeimage.png"); 
         JButton nuevoUsuarioFotoPrueba = new JButton(nuevoUsuarioIcon); //crea el botón con la imagen
         nuevoUsuarioFotoPrueba.setPreferredSize(new Dimension(100, 100)); //tamaño del boton que tiene la imagen
+        nuevoUsuarioFotoPrueba.setBackground(new Color(245, 245, 245)); //sin borde visible para mas elegancia (ni se nota)
+        nuevoUsuarioFotoPrueba.setBorderPainted(false);
         
         
-        
-        
-        panelSeleccionUsuario.add(nuevoUsuarioButton);
         panelSeleccionUsuario.add(registro);
         panelSeleccionUsuario.add(nuevoUsuarioFotoPrueba);
         
@@ -50,7 +52,7 @@ public class PanelUserSelection extends JPanel{
         cardPanel.add(panelCreacionUsuario, "CreacionUsuario"); //segundo panel
 
         //Nuevo Usuario
-        nuevoUsuarioButton.addActionListener(e -> {
+        nuevoUsuarioFotoPrueba.addActionListener(e -> {
             cardLayout.show(cardPanel, "CreacionUsuario"); 
         });
         
