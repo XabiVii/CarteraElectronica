@@ -35,7 +35,8 @@ public class VentanaPrincipal extends JFrame{
 	setIconImage(iconoCartera);
 	
 	añadirPaneles();
-	
+	PanelUserSelection panel = new PanelUserSelection();
+    add(panel);
 	setVisible(true);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
