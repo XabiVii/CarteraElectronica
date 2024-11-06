@@ -1,19 +1,19 @@
 package gui;
 
 public class Usuario {
+	
 	private String nombre;
     private String apellido;
     private String id;
     private String correoElectronico;
     private String contrasena;
-    private double saldo;
+    
 
     public Usuario(String nombre, String apellido, String correoElectronico, String contrasena, String id) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correoElectronico = correoElectronico;
         this.contrasena = contrasena;
-        this.saldo = 0.0;
         this.id = id;
     }
 
@@ -58,21 +58,13 @@ public class Usuario {
 	public void setCorreoElectronico(String correoElectronico) {
 		this.correoElectronico = correoElectronico;
 	}
-
-	public double getSaldo() {
-        return saldo;
-    }
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}
     
     @Override
     public String toString() {
         return "Usuario{" +
                 "nombre= " + nombre + '\'' +
                 ", apellido= " + apellido + '\'' +
-                ", correoElectronico= " + correoElectronico + '\'' +
-                ", saldo= " + saldo +
+                ", correoElectronico= " + correoElectronico + 
                 '}';
     }
 
