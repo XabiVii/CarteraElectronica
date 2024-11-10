@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -32,6 +33,16 @@ public class CreacionUsuario extends JPanel{
 	        
 	        aceptar = new JButton("Aceptar");
 	        cancelar = new JButton("Cancelar");
+	        
+	        aceptar.setBackground(new Color(60, 179, 113)); // Verde
+	        aceptar.setForeground(Color.WHITE);
+	        cancelar.setBackground(new Color(220, 20, 60)); // Rojo
+	        cancelar.setForeground(Color.WHITE);
+	        
+	        aceptar.setBackground(new Color(60, 179, 113)); 
+	        aceptar.setForeground(Color.WHITE);
+	        cancelar.setBackground(new Color(220, 20, 60)); 
+	        cancelar.setForeground(Color.WHITE);
 	        
 	        //año, mes y dia para la barrita
 	        diasCB = new JComboBox<>();
