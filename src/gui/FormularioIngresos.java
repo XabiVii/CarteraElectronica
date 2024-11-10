@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -66,6 +67,8 @@ public class FormularioIngresos extends  JPanel{
 		
 		JButton confirmar=new JButton("Confirmar");
 		JButton cancelar=new JButton("Cancelar");
+		cancelar.setBackground(Color.red);
+		confirmar.setBackground(Color.GREEN);
 		
 		cancelar.addActionListener(e -> cardLayout.show(getParent(), "pTabla"));
 		
