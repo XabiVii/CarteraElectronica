@@ -52,9 +52,9 @@ public class FormularioIngresos extends  JPanel{
 		// Vamos con los datos que introduce el usuario:
 		
 		JComboBox opciones = new JComboBox<>(IngresoGasto.values());
-		JTextField cantidad = new JTextField("Introduce aquí la cantidad", 15);
-		JTextField fecha = new JTextField("DD/MM/XXXX", 15);
-		JTextField descripcion = new JTextField("Descripción", 15);
+		JTextField cantidad = new JTextField();
+		JTextField fecha = new JTextField();
+		JTextField descripcion = new JTextField();
 		JComboBox metodoPago = new JComboBox<>(MetodosPago.values());
 		JComboBox tipoPago = new JComboBox<>(TiposPago.values());
 
