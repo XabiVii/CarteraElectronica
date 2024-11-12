@@ -25,15 +25,18 @@ public class CreacionUsuario extends JPanel{
 	    	this.cardLayout=cardLayout;
 	        setLayout(new GridLayout(7, 2, 10, 10));
 	        
+	        // Creamos los campos que necesitamos saber para la creación del usuario
 	        Inombre = new JTextField();
 	        Iapellido = new JTextField();
 	        Iid = new JTextField();
 	        Icorreo = new JTextField();
 	        Icontrasena = new JTextField();
 	        
+	        // Creamos lo botones
 	        aceptar = new JButton("Aceptar");
 	        cancelar = new JButton("Cancelar");
 	        
+	        // Modificamos el fondo de nuestros botones
 	        aceptar.setBackground(new Color(60, 179, 113)); // Verde
 	        aceptar.setForeground(Color.WHITE);
 	        cancelar.setBackground(new Color(220, 20, 60)); // Rojo
@@ -43,6 +46,7 @@ public class CreacionUsuario extends JPanel{
 	        aceptar.setForeground(Color.WHITE);
 	        cancelar.setBackground(new Color(220, 20, 60)); 
 	        cancelar.setForeground(Color.WHITE);
+	        
 	        
 	        //año, mes y dia para la barrita
 	        diasCB = new JComboBox<>();
@@ -61,6 +65,7 @@ public class CreacionUsuario extends JPanel{
 	            aniosCB.addItem(String.valueOf(i)); // hasta el 2006 que son el año que cumplen 18 este año
 	        }
 	        
+	        // Creamos todos los JLabels
 	        add(new JLabel("Nombre"));
 	        add(Inombre);
 	        add(new JLabel("Apellido"));
@@ -79,17 +84,24 @@ public class CreacionUsuario extends JPanel{
 	        fechaPanel.add(aniosCB);
 	        add(fechaPanel);
 	        
-	        //botones
+	        // Creamos los botones botones
 	        add(aceptar);
 	        add(cancelar);
 	        
 	        getCancelarButton().addActionListener(e -> {
 	            cardLayout.show(getParent(), "pUser"); //vuelve pa atras
 	        });
+	        
+	        getAceptarButton().addActionListener(e -> {
+	        	cardLayout.show(getParent(), "pUser"); // vuelve pa atras
+	        });
 
 
 	    }
-
+	    
+	    public JButton getAceptarButton() {
+	    	return aceptar;
+	    }
 	    public JButton getCancelarButton() {
 	        return cancelar;
 	    }
