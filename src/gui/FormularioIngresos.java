@@ -22,17 +22,18 @@ public class FormularioIngresos extends  JPanel{
 	public FormularioIngresos(CardLayout cardLayout) {
 		super();
 		
+		// Hacemos algunos ajustes en el JPanel
 		this.cardLayout=cardLayout;
 		
 		setSize(1200, 750);
-		
+			// Creamos el layout
 		gridLayout = new GridLayout(7,2);
 		setLayout(gridLayout);
 		gridLayout.setHgap(50);
 		gridLayout.setVgap(50);
 
 		
-		// Creamos los componentes
+		// Creamos los componentes del layout
 		
 		// Empezamos con los Labels
 		
@@ -58,8 +59,6 @@ public class FormularioIngresos extends  JPanel{
 		JComboBox metodoPago = new JComboBox<>(MetodosPago.values());
 		JComboBox tipoPago = new JComboBox<>(TiposPago.values());
 
-
-		
 		Dimension mx=new Dimension(50,50);
 		opciones.setPreferredSize(mx);
 		
@@ -67,10 +66,14 @@ public class FormularioIngresos extends  JPanel{
 		
 		JButton confirmar=new JButton("Confirmar");
 		JButton cancelar=new JButton("Cancelar");
+		
+			// Les ponemos colores a los botones
 		cancelar.setBackground(Color.red);
 		confirmar.setBackground(Color.GREEN);
 		
+			// Añadimos el actionListener
 		cancelar.addActionListener(e -> cardLayout.show(getParent(), "pTabla"));
+		confirmar.addActionListener(e -> cardLayout.show(getParent(), "pTabla") );
 		
 		add(labelOpciones);
 		add(opciones);
