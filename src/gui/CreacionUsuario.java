@@ -3,6 +3,8 @@ package gui;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,10 +22,11 @@ public class CreacionUsuario extends JPanel{
 	    private Usuario usuario;
 	    private JComboBox<String> diasCB, mesCB, aniosCB;
 	    private CardLayout cardLayout;
+	    private JLabel correoErrorLabel;
 
 	    public CreacionUsuario(CardLayout cardLayout) {
 	    	this.cardLayout=cardLayout;
-	        setLayout(new GridLayout(7, 2, 10, 10));
+	        setLayout(new GridLayout(8, 2, 10, 10));
 	        
 	        // Creamos los campos que necesitamos saber para la creación del usuario
 	        Inombre = new JTextField();
@@ -76,6 +79,31 @@ public class CreacionUsuario extends JPanel{
 	        add(Iid);
 	        add(new JLabel("Email"));
 	        add(Icorreo);
+	        
+	        correoErrorLabel = new JLabel("");
+	        correoErrorLabel.setForeground(Color.RED);
+	        add(correoErrorLabel);
+	        
+	        Icorreo.addFocusListener(new FocusListener() {
+				
+				@Override
+				public void focusLost(FocusEvent e) {
+					String email = Icorreo.getText();
+					if (email.contains("@")) {
+						 correoErrorLabel.setText(""); 
+					}else {
+						correoErrorLabel.setText("El email debe contener '@'");
+					}
+					
+				}
+				
+				@Override
+				public void focusGained(FocusEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+	        
 	        
 	        add(new JLabel("Fecha de nacimiento"));
 	        JPanel fechaPanel = new JPanel(new GridLayout(1, 3, 5, 5));
