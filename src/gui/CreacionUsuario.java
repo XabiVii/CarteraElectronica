@@ -120,6 +120,7 @@ public class CreacionUsuario extends JPanel{
 	            cardLayout.show(getParent(), "pUser"); //vuelve pa atras
 	        });
 	        
+	       
 	        getAceptarButton().addActionListener(e -> {
 	        	cardLayout.show(getParent(), "pUser"); // vuelve pa atras
 	        });
