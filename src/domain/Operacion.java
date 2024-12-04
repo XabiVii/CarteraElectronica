@@ -66,9 +66,15 @@ public class Operacion {
 	public void setMetodoPago(String metodoPago) {
 		this.metodoPago = metodoPago;
 	}
+	
 	public void setTipoPago(String tipoPago) {
 		this.tipoPago = tipoPago;
 	}
-		
+	
+	@Override
+	public String toString() {
+		return "El " + tipoOperacion + "de " + cantidad + 
+				" fue realizado en " + fecha + " descrito como " + descripcion + 
+				"utilizando " + metodoPago + " para pagar y en la categoria de" + tipoPago;
+	}
 }
-

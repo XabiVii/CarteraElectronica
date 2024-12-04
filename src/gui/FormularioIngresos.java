@@ -4,15 +4,20 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import domain.IngresoGasto;
 import domain.MetodosPago;
+import domain.Operacion;
 import domain.TiposPago;
+import persistencia.GestorBD;
 
 public class FormularioIngresos extends  JPanel{
 	
@@ -59,13 +64,13 @@ public class FormularioIngresos extends  JPanel{
 		JComboBox metodoPago = new JComboBox<>(MetodosPago.values());
 		JComboBox tipoPago = new JComboBox<>(TiposPago.values());
 
-		Dimension mx=new Dimension(50,50);
+		Dimension mx = new Dimension(50,50);
 		opciones.setPreferredSize(mx);
 		
 		// Botón para registrar la información
 		
-		JButton confirmar=new JButton("Confirmar");
-		JButton cancelar=new JButton("Cancelar");
+		JButton confirmar = new JButton("Confirmar");
+		JButton cancelar = new JButton("Cancelar");
 		
 			// Les ponemos colores a los botones
 		cancelar.setBackground(Color.red);
@@ -73,8 +78,33 @@ public class FormularioIngresos extends  JPanel{
 		
 			// Añadimos el actionListener
 		cancelar.addActionListener(e -> cardLayout.show(getParent(), "pTabla"));
-		confirmar.addActionListener(e -> cardLayout.show(getParent(), "pTabla") );
 		
+			// Creamos el actionListener para el botón confirmar
+		
+		confirmar.addActionListener(e -> {
+			try {
+				// Recopilamos los datos
+				String tipo = String.valueOf(opciones.getSelectedItem());
+				Integer cant = Integer.parseInt((String) cantidad.getText());
+				String fch = fecha.getText();
+				String desc = descripcion.getText();
+				String metPag = String.valueOf(metodoPago.getSelectedItem());
+				String tipoPag = String.valueOf(tipoPago.getSelectedItem());
+				
+				Operacion op = new Operacion(tipo, cant, fch, desc, metPag, tipoPag);
+				
+				// Añadir a base de datos
+				
+				
+				JOptionPane.showMessageDialog(this, "Usuario creado con éxito");
+				
+			} catch (Exception ex){
+				JOptionPane.showMessageDialog(this, "Error al crear la operación: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		});
+				
+				
+				
 		add(labelOpciones);
 		add(opciones);
 		add(labelCantidad);

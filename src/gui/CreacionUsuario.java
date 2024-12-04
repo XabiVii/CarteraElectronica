@@ -146,6 +146,7 @@ public class CreacionUsuario extends JPanel{
 	                }
 
 	                //Crear un nuevo usuario
+	                
 	                Usuario nuevoUsuario = new Usuario(nombre, apellido, correo, contrasena, "", fechaNacimiento);
 
 	                //Guardar en la base de datos
@@ -153,7 +154,6 @@ public class CreacionUsuario extends JPanel{
 	                //gestorBD.insertarUsuario(nuevoUsuario);
 
 	                JOptionPane.showMessageDialog(this, "Usuario creado con éxito");
-
 	                
 	            } catch (Exception ex) {
 	                JOptionPane.showMessageDialog(this, "Error al crear el usuario: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
