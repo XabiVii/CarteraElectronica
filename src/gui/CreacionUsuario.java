@@ -29,7 +29,7 @@ public class CreacionUsuario extends JPanel{
 
 	    public CreacionUsuario(CardLayout cardLayout) {
 	    	this.cardLayout=cardLayout;
-	        setLayout(new GridLayout(8, 2, 10, 10));
+	        setLayout(new GridLayout(7, 2, 10, 10));
 	        
 	        // Creamos los campos que necesitamos saber para la creación del usuario
 	        Inombre = new JTextField();
@@ -85,7 +85,7 @@ public class CreacionUsuario extends JPanel{
 	        
 	        correoErrorLabel = new JLabel("");
 	        correoErrorLabel.setForeground(Color.RED);
-	        add(correoErrorLabel);
+	        //add(correoErrorLabel);//este era tu error
 	        
 	        Icorreo.addFocusListener(new FocusListener() {
 				
@@ -109,6 +109,7 @@ public class CreacionUsuario extends JPanel{
 	        
 	        
 	        add(new JLabel("Fecha de nacimiento"));
+	        
 	        JPanel fechaPanel = new JPanel(new GridLayout(1, 3, 5, 5));
 	        fechaPanel.add(diasCB);
 	        fechaPanel.add(mesCB);
