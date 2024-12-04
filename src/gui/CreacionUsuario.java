@@ -72,15 +72,15 @@ public class CreacionUsuario extends JPanel{
 	        }
 	        
 	        // Creamos todos los JLabels
-	        add(new JLabel("Nombre"));
+	        add(new JLabel("Nombre", JLabel.CENTER));
 	        add(Inombre);
-	        add(new JLabel("Apellido"));
+	        add(new JLabel("Apellido", JLabel.CENTER));
 	        add(Iapellido);
-	        add(new JLabel("Contraseña"));
+	        add(new JLabel("Contraseña", JLabel.CENTER));
 	        add(Icontrasena);
-	        add(new JLabel("DNI"));
+	        add(new JLabel("DNI", JLabel.CENTER));
 	        add(Iid);
-	        add(new JLabel("Email"));
+	        add(new JLabel("Email", JLabel.CENTER));
 	        add(Icorreo);
 	        
 	        correoErrorLabel = new JLabel("");
@@ -108,7 +108,7 @@ public class CreacionUsuario extends JPanel{
 			});
 	        
 	        
-	        add(new JLabel("Fecha de nacimiento"));
+	        add(new JLabel("Fecha de nacimiento"), JLabel.CENTER);
 	        
 	        JPanel fechaPanel = new JPanel(new GridLayout(1, 3, 5, 5));
 	        fechaPanel.add(diasCB);
