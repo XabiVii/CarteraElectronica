@@ -163,10 +163,7 @@ public class GestorBD {
 		
 		public void insertarOperacion(Operacion operacion) {
 			try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
-				String sql = """
-						INSERT INTO OPERACION (TIPOOPERACION, CANTIDAD, FECHA, DESCRIPCION, METODOPAGO, TIPOPAGO,  BALANCE)
-						VALUES (?,?,?,?,?,?,?)
-						""";
+				String sql = "INSERT INTO OPERACION (TIPOOPERACION, CANTIDAD, FECHA, DESCRIPCION, METODOPAGO, TIPOPAGO,  BALANCE) VALUES (?,?,?,?,?,?,?)";
 				
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				
