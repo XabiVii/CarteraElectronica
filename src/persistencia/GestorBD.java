@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import domain.Operacion;
 import domain.Usuario;
-import gui.Operacion;
 
 
 
@@ -38,6 +38,7 @@ public class GestorBD {
 				ex.printStackTrace();
 			}
 		}
+		
 		public void crearUsuario() {
 	        try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
 	            String sql = """
@@ -70,8 +71,9 @@ public class GestorBD {
 						FECHA TEXT NOT NULL,
 						DESCRIPCIÓN TEXT,
 						METODOPAGO TEXT NOT NULL,
-						TIPOPAGO TEXT
-						);		
+						TIPOPAGO TEXT,
+						BALANCE INTEGER
+					);		
 				""";
 				
 				try (PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -98,6 +100,7 @@ public class GestorBD {
 					pstmt.setString(5, usuario.getFechaNacimiento().toString());
 					pstmt.executeUpdate();
 					System.out.println("--> Usuario insertado: " + usuario);
+					pstmt.close();
 				}	
 				
 			} catch (Exception ex) {
@@ -123,10 +126,10 @@ public class GestorBD {
 											String.valueOf(rsltst.getInt("ID")),
 											LocalDate.parse(rsltst.getString("FECHA_NACIMIENTO"))
 						            );
-									usuarios.add(usuario);
+									usuarios.add(usuario);		
+						pstmt.close();
 						}
 					}
-				
 					
 			} catch (Exception ex) {
 				System.err.format("\n* Error al obtener datos de la BDD: %s", ex.getMessage());
@@ -137,11 +140,36 @@ public class GestorBD {
 		
 		public void insertarOperacion(Operacion operacion) {
 			try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
-				String sql = "INSERT INTO ";
+				String sql = """
+						INSERT INTO OPERACION (TIPOOPERACION, CANTIDAD, FECHA, DESCRIPCION, METODOPAGO, BALANCE)
+						VALUES (?,?,?,?,?,?)
+						""";
+				
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				
+				System.out.println("--> Insertando operación");
+				
+				// Metemos al insert los datos de la operacion
+				
+				pstmt.setString(1, operacion.getTipoOperacion());
+				pstmt.setInt(2, operacion.getCantidad());
+				pstmt.setString(3, operacion.getFecha());
+				pstmt.setString(4, operacion.getDescripción());
+				pstmt.setString(5, operacion.getMetodoPago());
+				pstmt.setString(6, operacion.getTipoPago());
+				
+				if (1 == pstmt.executeUpdate()) {
+					System.out.println("\n --> Operación insertada ");
+				} else {
+					System.out.println("\n --> No se ha insertado la Operación");
+				}
+				
+				pstmt.close();
+				
 			} catch (Exception ex) {
-				System.err.format("\n* Error al añadir datos de la BDD: %s", ex.getMessage());
+				System.err.format("\n* Error al insertar la operación  de la BDD: %s", ex.getMessage());
+				ex.printStackTrace();
 			}
-			
 		}
 			
 }
