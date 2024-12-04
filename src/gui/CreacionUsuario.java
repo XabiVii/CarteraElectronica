@@ -108,7 +108,7 @@ public class CreacionUsuario extends JPanel{
 			});
 	        
 	        
-	        add(new JLabel("Fecha de nacimiento"), JLabel.CENTER);
+	        add(new JLabel("Fecha de nacimiento"));
 	        
 	        JPanel fechaPanel = new JPanel(new GridLayout(1, 3, 5, 5));
 	        fechaPanel.add(diasCB);
