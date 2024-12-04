@@ -46,7 +46,6 @@ public class GestorBD {
 	                    APELLIDO TEXT NOT NULL,
 	                    CORREO TEXT NOT NULL,
 	                    PASSWORD TEXT NOT NULL,
-	                    SALDO REAL DEFAULT 0,
 	                    FECHA_NACIMIENTO TEXT
 	                );
 	            """;
@@ -65,7 +64,7 @@ public class GestorBD {
 			//Se abre la conexión y se obtiene el Statement
 			try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
 				//Se define la plantilla de la sentencia SQL
-				String sql = "INSERT INTO USUARIO (NOMBRE, APELLIDO, CORREO, PASSWORD, SALDO, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?, ?, ?);";
+				String sql = "INSERT INTO USUARIO (NOMBRE, APELLIDO, CORREO, PASSWORD, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?, ?);";
 				
 				try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 					pstmt.setString(1, usuario.getNombre());
@@ -102,7 +101,6 @@ public class GestorBD {
 											String.valueOf(rsltst.getInt("ID")),
 											LocalDate.parse(rsltst.getString("FECHA_NACIMIENTO"))
 						            );
-									usuario.setSaldo(rsltst.getDouble("SALDO"));
 									usuarios.add(usuario);
 						}
 					}
