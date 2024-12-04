@@ -4,10 +4,21 @@ public class Operacion {
 	String tipoOperacion;
 	Integer cantidad;
 	String fecha;
-	String descripción;
+	String descripcion;
 	String metodoPago;
 	String tipoPago;
 	
+	// Creamos el constructor 
+	
+	public Operacion(String tipoOp, Integer cant, String fch, String desp, String metPago, String tipoPa) {
+		super();
+		tipoOperacion = tipoOp;
+		cantidad = cant;
+		fecha = fch;
+		descripcion = desp;
+		metodoPago = metPago;
+		tipoPago = tipoPa;
+	}
 	// Vamos con los getters
 	
 	public String getTipoOperacion() {
@@ -23,7 +34,7 @@ public class Operacion {
 	}
 	
 	public String getDescripción() {
-		return descripción;
+		return descripcion;
 	}
 	
 	public String getMetodoPago() {
@@ -49,7 +60,7 @@ public class Operacion {
 	}
 	
 	public void setDescripción(String descripción) {
-		this.descripción = descripción;
+		this.descripcion = descripción;
 	}
 	
 	public void setMetodoPago(String metodoPago) {

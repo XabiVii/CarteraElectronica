@@ -147,7 +147,13 @@ public class GestorBD {
 		
 		public int getBalance() {
 			try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
-				String sql = "SELECT BALANCE FROM ";
+				String sql = "SELECT BALANCE FROM USUARIO";
+				
+				try(PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rsltst = pstmt.executeQuery()) {
+					return rsltst.getInt("BALANCE");
+				}
+				
 			} catch (Exception ex) {
 				System.err.format("\n* Error al obtener el balance de la BDD", ex.getMessage());
 				ex.printStackTrace();
@@ -175,8 +181,19 @@ public class GestorBD {
 				pstmt.setString(5, operacion.getMetodoPago());
 				pstmt.setString(6, operacion.getTipoPago());
 				
+				
 				// Calculamos el balance actual
 				
+				int balance = getBalance();
+				if (operacion.getTipoOperacion().toUpperCase() == "INGRESO") {
+					balance+= operacion.getCantidad();
+				} else {
+					balance-= operacion.getCantidad();
+				}
+				
+				// Metemos el balance en la BDD
+				
+				pstmt.setInt(7, balance);
 				
 				if (1 == pstmt.executeUpdate()) {
 					System.out.println("\n --> Operación insertada ");
@@ -191,5 +208,10 @@ public class GestorBD {
 				ex.printStackTrace();
 			}
 		}
-			
+		
+		
+		public Operacion getOperacion() {
+			Operacion operacion = new Operacion("", 1, "", "", "", "");
+			return operacion;
+		}
 }
