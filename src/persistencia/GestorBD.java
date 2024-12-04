@@ -110,7 +110,8 @@ public class GestorBD {
 				System.err.format("\n* Error al obtener datos de la BBDD: %s", ex.getMessage());
 				ex.printStackTrace();						
 			}
-			return usuarios;		
+			return usuarios;
+		}
 			
 			
 }
