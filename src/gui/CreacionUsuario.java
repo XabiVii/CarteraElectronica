@@ -29,7 +29,7 @@ public class CreacionUsuario extends JPanel{
 
 	    public CreacionUsuario(CardLayout cardLayout) {
 	    	this.cardLayout=cardLayout;
-	        setLayout(new GridLayout(9, 2, 10, 10));
+	        setLayout(new GridLayout(8, 2, 10, 10));
 	        
 	        // Creamos los campos que necesitamos saber para la creación del usuario
 	        Inombre = new JTextField();
