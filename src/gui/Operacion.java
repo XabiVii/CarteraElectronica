@@ -8,3 +8,4 @@ public class Operacion {
 	String metodoPago;
 	String tipoComida;
 }
+
