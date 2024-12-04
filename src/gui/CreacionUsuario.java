@@ -5,14 +5,17 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import domain.Usuario;
+import jdbc.GestorBD;
 
 public class CreacionUsuario extends JPanel{
 	 private static final long serialVersionUID = 1L;
@@ -125,7 +128,36 @@ public class CreacionUsuario extends JPanel{
 	        	cardLayout.show(getParent(), "pUser"); // vuelve pa atras
 	        });
 
+	        aceptar.addActionListener(e -> {
+	            try {
+	                String nombre = Inombre.getText();
+	                String apellido = Iapellido.getText();
+	                String correo = Icorreo.getText();
+	                String contrasena = Icontrasena.getText();
+	                int dia = Integer.parseInt((String) diasCB.getSelectedItem());
+	                int mes = mesCB.getSelectedIndex() + 1; //los índices en los JComboBox comienzan en 0 pero con sumando 1 hago que empiecen por enero
+	                int anio = Integer.parseInt((String) aniosCB.getSelectedItem());
+	                LocalDate fechaNacimiento = LocalDate.of(anio, mes, dia); //junto todo, como en R lo de lubridate
+	                
+	                if (nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
+	                    JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+	                    return;
+	                }
 
+	                //Crear un nuevo usuario
+	                Usuario nuevoUsuario = new Usuario(nombre, apellido, correo, contrasena, "", fechaNacimiento);
+
+	                //Guardar en la base de datos
+	                //GestorBD gestorBD = new GestorBD();
+	                //gestorBD.insertarUsuario(nuevoUsuario);
+
+	                JOptionPane.showMessageDialog(this, "Usuario creado con éxito");
+
+	                
+	            } catch (Exception ex) {
+	                JOptionPane.showMessageDialog(this, "Error al crear el usuario: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	        });
 	    }
 	    
 	    public JButton getAceptarButton() {
