@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import domain.Usuario;
-import jdbc.GestorBD;
+
 
 public class CreacionUsuario extends JPanel{
 	 private static final long serialVersionUID = 1L;
