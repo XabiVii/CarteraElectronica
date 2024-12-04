@@ -18,6 +18,7 @@ import domain.Usuario;
 public class GestorBD {
 	
 	// Lo de dentro del resource
+	
 		protected static String DRIVER_NAME;  
 		protected static String DB_FILE;
 		protected static String CONNECTION_STRING;
@@ -32,6 +33,7 @@ public class GestorBD {
 				CONNECTION_STRING = connectionProperties.getProperty("CONNECTION_STRING") + DB_FILE;
 				
 				// Cargar el diver SQLite
+				
 				Class.forName(DRIVER_NAME);
 			} catch (Exception ex) {
 				System.err.format("\n* Error al cargar el driver de BDD: %s", ex.getMessage());
@@ -87,9 +89,13 @@ public class GestorBD {
 		}
 		
 		public void insertarUsuario(Usuario usuario) {
+			
 			// Se abre la conexión y se obtiene el Statement
+			
 			try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
+				
 				// Se define la plantilla de la sentencia SQL
+				
 				String sql = "INSERT INTO USUARIO (NOMBRE, APELLIDO, CORREO, PASSWORD, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?, ?);";
 				
 				try (PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -113,6 +119,7 @@ public class GestorBD {
 			List<Usuario> usuarios = new ArrayList<>();
 			
 			//Se abre la conexión y se obtiene el Statement
+			
 			try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
 				String sql = "SELECT * FROM USUARIO";
 				try (PreparedStatement pstmt = con.prepareStatement(sql); 
@@ -138,11 +145,21 @@ public class GestorBD {
 			return usuarios;
 		}
 		
+		public int getBalance() {
+			try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
+				String sql = "SELECT BALANCE FROM ";
+			} catch (Exception ex) {
+				System.err.format("\n* Error al obtener el balance de la BDD", ex.getMessage());
+				ex.printStackTrace();
+				return 0;
+			}
+		}
+		
 		public void insertarOperacion(Operacion operacion) {
 			try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
 				String sql = """
-						INSERT INTO OPERACION (TIPOOPERACION, CANTIDAD, FECHA, DESCRIPCION, METODOPAGO, BALANCE)
-						VALUES (?,?,?,?,?,?)
+						INSERT INTO OPERACION (TIPOOPERACION, CANTIDAD, FECHA, DESCRIPCION, METODOPAGO, TIPOPAGO,  BALANCE)
+						VALUES (?,?,?,?,?,?,?)
 						""";
 				
 				PreparedStatement pstmt = con.prepareStatement(sql);
@@ -157,6 +174,9 @@ public class GestorBD {
 				pstmt.setString(4, operacion.getDescripción());
 				pstmt.setString(5, operacion.getMetodoPago());
 				pstmt.setString(6, operacion.getTipoPago());
+				
+				// Calculamos el balance actual
+				
 				
 				if (1 == pstmt.executeUpdate()) {
 					System.out.println("\n --> Operación insertada ");
