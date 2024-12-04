@@ -34,7 +34,7 @@ public class GestorBD {
 				// Cargar el diver SQLite
 				Class.forName(DRIVER_NAME);
 			} catch (Exception ex) {
-				System.err.format("\n* Error al cargar el driver de BBDD: %s", ex.getMessage());
+				System.err.format("\n* Error al cargar el driver de BDD: %s", ex.getMessage());
 				ex.printStackTrace();
 			}
 		}
@@ -53,7 +53,7 @@ public class GestorBD {
 
 	            try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 	                pstmt.execute();
-	                System.out.println("-> Se ha creado la tabla USUARIO");
+	                System.out.println("--> Se ha creado la tabla USUARIO");
 	            }
 	        } catch (Exception ex) {
 	            System.err.println("* Error al crear la tabla Usuario de la BDD: " + ex.getMessage());
@@ -70,9 +70,14 @@ public class GestorBD {
 						FECHA TEXT NOT NULL,
 						DESCRIPCIÓN TEXT,
 						METODOPAGO TEXT NOT NULL,
-						TIPOCOMIDA TEXT
+						TIPOPAGO TEXT
 						);		
 				""";
+				
+				try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+					pstmt.execute();
+					System.out.println("--> Se ha creado la tabla Operación");
+				}
 			} catch (Exception ex) {
 				System.err.println("* Error al crear la tabla Operacion en la BDD" + ex.getMessage());
 				ex.printStackTrace();
@@ -124,7 +129,7 @@ public class GestorBD {
 				
 					
 			} catch (Exception ex) {
-				System.err.format("\n* Error al obtener datos de la BBDD: %s", ex.getMessage());
+				System.err.format("\n* Error al obtener datos de la BDD: %s", ex.getMessage());
 				ex.printStackTrace();						
 			}
 			return usuarios;
