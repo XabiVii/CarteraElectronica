@@ -14,6 +14,7 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -65,6 +66,11 @@ public class PanelTabla extends JPanel {
 		mediaGasto = new JButton("Media de gastos");
 		mediaIngreso = new JButton("Media de ingresos");
 
+		new JOptionPane();
+		mediaGasto.addActionListener(e -> JOptionPane.showMessageDialog(this, "La media del Gasto es ..."));
+		new JOptionPane();
+		mediaIngreso.addActionListener(e -> JOptionPane.showMessageDialog(this, "La media de Ingreso es ..."));
+		
 		introducirNuevo.addActionListener(e -> cardLayout.show(getParent(), "pNuevo"));
 
 		x.add(introducirNuevo);
