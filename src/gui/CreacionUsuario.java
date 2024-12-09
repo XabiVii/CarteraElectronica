@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import domain.Usuario;
+import persistencia.GestorBD;
 
 
 public class CreacionUsuario extends JPanel{
@@ -150,16 +151,27 @@ public class CreacionUsuario extends JPanel{
 	                Usuario nuevoUsuario = new Usuario(nombre, apellido, correo, contrasena, "", fechaNacimiento);
 
 	                //Guardar en la base de datos
-	                //GestorBD gestorBD = new GestorBD();
-	                //gestorBD.insertarUsuario(nuevoUsuario);
+	                GestorBD gestorBD = new GestorBD();
+	                gestorBD.insertarUsuario(nuevoUsuario);
 
 	                JOptionPane.showMessageDialog(this, "Usuario creado con éxito");
 	                
+	                //limpiar
+	                Inombre.setText("");
+	                Iapellido.setText("");
+	                Icorreo.setText("");
+	                Icontrasena.setText("");
+	                diasCB.setSelectedIndex(0);  
+	                mesCB.setSelectedIndex(0);  
+	                aniosCB.setSelectedIndex(0); 
+	            
 	            } catch (Exception ex) {
 	                JOptionPane.showMessageDialog(this, "Error al crear el usuario: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	            }
 	        });
 	    }
+	    
+	    
 	    
 	    public JButton getAceptarButton() {
 	    	return aceptar;
