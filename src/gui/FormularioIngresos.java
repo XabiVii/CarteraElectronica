@@ -94,15 +94,16 @@ public class FormularioIngresos extends  JPanel{
 				Operacion op = new Operacion(tipo, cant, fch, desc, metPag, tipoPag);
 				
 				// Añadir a base de datos
-				
+				GestorBD gestorBD= new GestorBD();
+				gestorBD.insertarOperacion(op);
 				
 				JOptionPane.showMessageDialog(this, "Operación creada con éxito");
 				
+				cardLayout.show(getParent(), "pTabla");
 			} catch (Exception ex){
 				JOptionPane.showMessageDialog(this, "Error al crear la operación: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
-				
 				
 				
 		add(labelOpciones);

@@ -86,7 +86,7 @@ public class CreacionUsuario extends JPanel{
 	        
 	        correoErrorLabel = new JLabel("");
 	        correoErrorLabel.setForeground(Color.RED);
-	        //add(correoErrorLabel);//este era tu error
+	        //add(correoErrorLabel);// Este era tu error
 	        
 	        Icorreo.addFocusListener(new FocusListener() {
 				

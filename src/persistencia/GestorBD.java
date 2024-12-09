@@ -108,7 +108,7 @@ public class GestorBD {
 				}	
 				
 			} catch (Exception ex) {
-				System.err.format("\n* Error al insertar datos de la BBDD: %s", ex.getMessage());
+				System.err.format("\n* Error al insertar datos de la BDD: %s", ex.getMessage());
 				ex.printStackTrace();						
 			}
 		}
@@ -179,7 +179,7 @@ public class GestorBD {
 				
 				// Calculamos el balance actual
 				
-				int balance = 1; // Cambiar por getBalance()
+				int balance = getBalance(); // Cambiar por getBalance()
 				if (operacion.getTipoOperacion().toUpperCase() == "INGRESO") {
 					balance+= operacion.getCantidad();
 				} else {
@@ -189,6 +189,7 @@ public class GestorBD {
 				// Metemos el balance en la BDD
 				
 				pstmt.setInt(7, balance);
+				
 				
 				if (1 == pstmt.executeUpdate()) {
 					System.out.println("\n --> Operación insertada ");
