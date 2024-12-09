@@ -58,7 +58,7 @@ public class GestorBD {
 		    // SQL para crear la tabla OPERACION
 		    String sqlOperacion = """
 		        CREATE TABLE IF NOT EXISTS OPERACION (
-		            ID INTEGER PRIMARY KEY NOT,
+		            ID INTEGER PRIMARY KEY,
 		            TIPOOPERACION TEXT NOT NULL,
 		            CANTIDAD REAL NOT NULL,
 		            FECHA TEXT NOT NULL,
