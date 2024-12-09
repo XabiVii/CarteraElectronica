@@ -6,6 +6,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import threads.PantallaConSalvapantallas;
+
 public class VentanaPrincipal extends JFrame{
 	
 	/**
@@ -43,7 +45,7 @@ public class VentanaPrincipal extends JFrame{
 	
 	añadirPaneles();
 	
-	
+	new PantallaConSalvapantallas(this);
 	
 	iconoCartera=new ImageIcon("resources/images/CarteraIcono.png").getImage();
 	setIconImage(iconoCartera);
