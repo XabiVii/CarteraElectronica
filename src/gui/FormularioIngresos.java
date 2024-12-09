@@ -96,7 +96,7 @@ public class FormularioIngresos extends  JPanel{
 				// Añadir a base de datos
 				
 				
-				JOptionPane.showMessageDialog(this, "Usuario creado con éxito");
+				JOptionPane.showMessageDialog(this, "Operación creada con éxito");
 				
 			} catch (Exception ex){
 				JOptionPane.showMessageDialog(this, "Error al crear la operación: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
