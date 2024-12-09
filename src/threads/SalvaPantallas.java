@@ -20,7 +20,7 @@ public class SalvaPantallas extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // Al hacer clic, cerrar el salvapantallas y volver a la ventana principal
+        //al hacer clic, cerrar el salvapantallas y volver a la ventana principal
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -30,7 +30,7 @@ public class SalvaPantallas extends JFrame {
             }
         });
 
-        // Inicia el hilo que mueve el círculo
+        //inicia el hilo que mueve el círculo
         Thread screensaverThread = new Thread(new ScreensaverRunnable());
         screensaverThread.start();
     }
@@ -38,8 +38,8 @@ public class SalvaPantallas extends JFrame {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.setColor(Color.BLUE); // Establece el color del círculo
-        g.fillOval(x - RADIUS, y - RADIUS, 2 * RADIUS, 2 * RADIUS); // Dibuja el círculo
+        g.setColor(Color.BLUE); //azul pero se pondrá el logo
+        g.fillOval(x - RADIUS, y - RADIUS, 2 * RADIUS, 2 * RADIUS); 
     }
 
     // Clase interna para manejar la animación
@@ -47,11 +47,10 @@ public class SalvaPantallas extends JFrame {
         @Override
         public void run() {
             while (true) {
-                // Actualizar la posición del círculo
                 x += dx;
                 y += dy;
 
-                // Cambiar la dirección si toca los bordes
+                //cambiar la dirección si toca los bordes
                 if (x + RADIUS >= getWidth() || x - RADIUS <= 0) {
                     dx = -dx;
                 }
@@ -59,10 +58,10 @@ public class SalvaPantallas extends JFrame {
                     dy = -dy;
                 }
 
-                repaint(); // Redibujar el círculo
+                repaint();
 
                 try {
-                    Thread.sleep(10); // Pausa de 10 milisegundos
+                    Thread.sleep(10); //pausa 10 milisegundos
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
