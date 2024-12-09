@@ -23,6 +23,7 @@ public class GestorBD {
 		protected static String DB_FILE;
 		protected static String CONNECTION_STRING;
 		private static int id_Operacion = 1;
+		private int id_Usuario_actual;
 		
 		public GestorBD() {		
 			try {
@@ -145,13 +146,20 @@ public class GestorBD {
 		}
 		
 		public int getBalance() {
+			int balance_tot = 0;
 			 try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
-				String sql = "SELECT BALANCE FROM USUARIO";
+				String sql_in = "SELECT CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'INGRESO'";
+				String sql_gas = "SELECT CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'GASTO'";
 				
-				try(PreparedStatement pstmt = con.prepareStatement(sql);
+				try(PreparedStatement pstmt = con.prepareStatement(sql_in);
 				ResultSet rsltst = pstmt.executeQuery()) {
-					return rsltst.getInt("BALANCE");
+					balance_tot+= rsltst.getInt("CANTIDAD");
 				}
+				
+				try(PreparedStatement pstmt = con.prepareStatement(sql_gas); ResultSet rsltst = pstmt.executeQuery()) {
+					balance_tot-= rsltst.getInt("CANTIDAD");
+				}
+				return balance_tot;
 				
 			} catch (Exception ex) {
 				System.err.format("\n* Error al obtener el balance de la BDD", ex.getMessage());
