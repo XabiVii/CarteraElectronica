@@ -21,10 +21,32 @@ public class PantallaConSalvapantallas {
     	timersalvapantallas.setRepeats(false); //se ejecuta solo una vez hasta que se reinicie asi no hay 400 salva pantallas
     	
     	//actividad usuario
-    	//addMouseMotionListener(new UserActivityListener());
-        //addKeyListener(new UserActivityListener());
+    	ventanaPrincipal.addMouseMotionListener(new UserActivityListener());
+        ventanaPrincipal.addKeyListener(new UserActivityListener());
         
         timersalvapantallas.start();
+    }
+    
+	private class UserActivityListener extends KeyAdapter implements MouseMotionListener {
+        @Override
+        public void mouseMoved(MouseEvent e) {
+        	reseteotimer(); //se reinicia 
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+        	reseteotimer(); // Reiniciar el temporizador al presionar una tecla
+        }
+
+        //metodos sin nada, vacíos necesarios para implementar MouseMotionListener
+        @Override
+        public void mouseDragged(MouseEvent e) {}
+    }
+    private void reseteotimer() {
+        if (timersalvapantallas.isRunning()) {
+            timersalvapantallas.stop(); //detiene el timer
+        }
+        timersalvapantallas.start(); //reinicia el timer
     }
     
 }
