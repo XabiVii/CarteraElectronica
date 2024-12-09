@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 
+import gui.VentanaPrincipal;
+
 public class SalvaPantallas extends JFrame {
     private static final long serialVersionUID = 1L;
     private int x = 50, y = 50; // Posición inicial del círculo
@@ -25,8 +27,8 @@ public class SalvaPantallas extends JFrame {
             @Override
             public void mousePressed(MouseEvent e) {
                 dispose(); // Cierra el salvapantallas
-               // Ventana ventanaPrincipal = new Ventana();
-               // ventanaPrincipal.setVisible(true); // Muestra la ventana principal
+                VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+                ventanaPrincipal.setVisible(true); // Muestra la ventana principal
             }
         });
 
