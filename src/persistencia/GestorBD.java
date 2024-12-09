@@ -41,53 +41,51 @@ public class GestorBD {
 			}
 		}
 		
-		public void crearUsuario() {
-	        try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
-	            String sql = """
-	                CREATE TABLE IF NOT EXISTS USUARIO (
-	                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-	                    NOMBRE TEXT NOT NULL,
-	                    APELLIDO TEXT NOT NULL,
-	                    CORREO TEXT NOT NULL,
-	                    PASSWORD TEXT NOT NULL,
-	                    FECHA_NACIMIENTO TEXT
-	                );
-	            """;
+		public void crearTablas() {
+		    // SQL para crear la tabla USUARIO
+		    String sqlUsuario = """
+		        CREATE TABLE IF NOT EXISTS USUARIO (
+		            ID INTEGER PRIMARY KEY,
+		            NOMBRE TEXT NOT NULL,
+		            APELLIDO TEXT NOT NULL,
+		            CORREO TEXT NOT NULL UNIQUE,
+		            PASSWORD TEXT NOT NULL,
+		            FECHA_NACIMIENTO TEXT NOT NULL
+		        );
+		    """;
 
-	            try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-	                pstmt.execute();
-	                System.out.println("--> Se ha creado la tabla USUARIO");
-	            }
-	        } catch (Exception ex) {
-	            System.err.println("* Error al crear la tabla Usuario de la BDD: " + ex.getMessage());
-	            ex.printStackTrace();
-	        }
-	    }
-		
-		public void crearOperacion() {
-			try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
-				String sql = """
-					CREATE TABLE IF NOT EXISTS OPERACION (
-						TIPOOPERACION TEXT NOT NULL,
-						CANTIDAD INTEGER,
-						FECHA TEXT NOT NULL,
-						DESCRIPCIÓN TEXT,
-						METODOPAGO TEXT NOT NULL,
-						TIPOPAGO TEXT,
-						BALANCE INTEGER
-					);		
-				""";
-				
-				try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-					pstmt.execute();
-					System.out.println("--> Se ha creado la tabla Operación");
-				}
-			} catch (Exception ex) {
-				System.err.println("* Error al crear la tabla Operacion en la BDD" + ex.getMessage());
-				ex.printStackTrace();
-			}
+		    // SQL para crear la tabla OPERACION
+		    String sqlOperacion = """
+		        CREATE TABLE IF NOT EXISTS OPERACION (
+		            ID INTEGER PRIMARY KEY,
+		            TIPOOPERACION TEXT NOT NULL,
+		            CANTIDAD REAL NOT NULL,
+		            FECHA TEXT NOT NULL,
+		            DESCRIPCION TEXT,
+		            METODOPAGO TEXT NOT NULL,
+		            TIPOPAGO TEXT,
+		            BALANCE REAL,
+		            ID_USUARIO INTEGER NOT NULL,
+		            FOREIGN KEY (ID_USUARIO) REFERENCES USUARIO(ID) ON DELETE CASCADE
+		        );
+		    """;
+
+		    try (Connection con = DriverManager.getConnection(CONNECTION_STRING);
+		         PreparedStatement pStmtUsuario = con.prepareStatement(sqlUsuario);
+		         PreparedStatement pStmtOperacion = con.prepareStatement(sqlOperacion)) {
+
+		        pStmtUsuario.execute();
+		        System.out.println("Tabla USUARIO creada o ya existía.");
+
+		        pStmtOperacion.execute();
+		        System.out.println("Tabla OPERACION creada o ya existía.");
+
+		    } catch (Exception ex) {
+		        System.err.println("Error al crear las tablas: " + ex.getMessage());
+		        ex.printStackTrace();
+		    }
 		}
-		
+
 		public void insertarUsuario(Usuario usuario) {
 			
 			// Se abre la conexión y se obtiene el Statement
