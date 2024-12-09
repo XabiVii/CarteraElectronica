@@ -4,8 +4,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -57,12 +55,12 @@ public class FormularioIngresos extends  JPanel{
 
 		// Vamos con los datos que introduce el usuario:
 		
-		JComboBox opciones = new JComboBox<>(IngresoGasto.values());
+		JComboBox<IngresoGasto> opciones = new JComboBox<IngresoGasto>(IngresoGasto.values());
 		JTextField cantidad = new JTextField();
 		JTextField fecha = new JTextField();
 		JTextField descripcion = new JTextField();
-		JComboBox metodoPago = new JComboBox<>(MetodosPago.values());
-		JComboBox tipoPago = new JComboBox<>(TiposPago.values());
+		JComboBox<MetodosPago> metodoPago = new JComboBox<MetodosPago>(MetodosPago.values());
+		JComboBox<TiposPago> tipoPago = new JComboBox<TiposPago>(TiposPago.values());
 
 		Dimension mx = new Dimension(50,50);
 		opciones.setPreferredSize(mx);
@@ -104,8 +102,7 @@ public class FormularioIngresos extends  JPanel{
 				JOptionPane.showMessageDialog(this, "Error al crear la operación: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		});
-				
-				
+								
 		add(labelOpciones);
 		add(opciones);
 		add(labelCantidad);
@@ -120,6 +117,5 @@ public class FormularioIngresos extends  JPanel{
 		add(tipoPago);
 		add(confirmar);
 		add(cancelar);
-
 	}
 }

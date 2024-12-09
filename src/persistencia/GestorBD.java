@@ -22,6 +22,7 @@ public class GestorBD {
 		protected static String DRIVER_NAME;  
 		protected static String DB_FILE;
 		protected static String CONNECTION_STRING;
+		private static int id_Operacion = 1;
 		
 		public GestorBD() {		
 			try {
@@ -57,7 +58,7 @@ public class GestorBD {
 		    // SQL para crear la tabla OPERACION
 		    String sqlOperacion = """
 		        CREATE TABLE IF NOT EXISTS OPERACION (
-		            ID INTEGER PRIMARY KEY,
+		            ID INTEGER PRIMARY KEY NOT,
 		            TIPOOPERACION TEXT NOT NULL,
 		            CANTIDAD REAL NOT NULL,
 		            FECHA TEXT NOT NULL,
@@ -161,7 +162,7 @@ public class GestorBD {
 		
 		public void insertarOperacion(Operacion operacion) {
 			try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
-				String sql = "INSERT INTO OPERACION (TIPOOPERACION, CANTIDAD, FECHA, DESCRIPCION, METODOPAGO, TIPOPAGO,  BALANCE) VALUES (?,?,?,?,?,?,?)";
+				String sql = "INSERT INTO OPERACION (ID_OPERACION, TIPOOPERACION, CANTIDAD, FECHA, DESCRIPCION, METODOPAGO, TIPOPAGO,  BALANCE) VALUES (?,?,?,?,?,?,?,?)";
 				
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				
@@ -169,12 +170,14 @@ public class GestorBD {
 				
 				// Metemos al insert los datos de la operacion
 				
-				pstmt.setString(1, operacion.getTipoOperacion());
-				pstmt.setInt(2, operacion.getCantidad());
-				pstmt.setString(3, operacion.getFecha());
-				pstmt.setString(4, operacion.getDescripción());
-				pstmt.setString(5, operacion.getMetodoPago());
-				pstmt.setString(6, operacion.getTipoPago());
+				pstmt.setInt(1, id_Operacion);
+				id_Operacion+= 1;
+				pstmt.setString(2, operacion.getTipoOperacion());
+				pstmt.setInt(3, operacion.getCantidad());
+				pstmt.setString(4, operacion.getFecha());
+				pstmt.setString(5, operacion.getDescripción());
+				pstmt.setString(6, operacion.getMetodoPago());
+				pstmt.setString(7, operacion.getTipoPago());
 				
 				
 				// Calculamos el balance actual
@@ -188,7 +191,7 @@ public class GestorBD {
 				
 				// Metemos el balance en la BDD
 				
-				pstmt.setInt(7, balance);
+				pstmt.setInt(8, balance);
 				
 				
 				if (1 == pstmt.executeUpdate()) {
