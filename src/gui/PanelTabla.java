@@ -40,8 +40,10 @@ public class PanelTabla extends JPanel {
 	private JButton introducirNuevo;
 	private JButton mediaGasto;
 	private JButton mediaIngreso;
-	private static GestorBD gestorBD;
+	private GestorBD gestorBD;
 	private static List<Operacion> operaciones;
+	private Vector<String> cabecera = new Vector<String>(Arrays.asList("FECHA", "IMPORTE", "TIPO", "OPERACION", "BALANCE"));
+
 
 	public PanelTabla(CardLayout cardLayout) {
 		gestorBD=new GestorBD();
@@ -93,13 +95,15 @@ public class PanelTabla extends JPanel {
 		setBackground(Color.BLACK);
 
 	}
-	public static void actualizarOpe() {
+	public void actualizarOpe() {
 		operaciones=gestorBD.getOperaciones();
+		System.out.println(operaciones);
+		modeloDatos.addRow(new Object[] { operaciones.get(operaciones.size()-1).getFecha(), operaciones.get(operaciones.size()-1).getCantidad(), operaciones.get(operaciones.size()-1).getTipoPago(), operaciones.get(operaciones.size()-1).getTipoOperacion(),1000 });
+
 	}
 	
 
 	private void initTabla() {
-		Vector<String> cabecera = new Vector<String>(Arrays.asList("FECHA", "IMPORTE", "TIPO", "OPERACION", "BALANCE"));
 
 		modeloDatos = new DefaultTableModel(new Vector<Vector<Object>>(), cabecera);
 		

@@ -61,7 +61,7 @@ public class VentanaPrincipal extends JFrame{
 
 		panelTabla=new PanelTabla(navegacion);
 		
-		panelNuevoOpe=new FormularioIngresos(navegacion);
+		panelNuevoOpe=new FormularioIngresos(navegacion,panelTabla);
 		
 		navegacion.addLayoutComponent(panelTabla, "pTabla");
 		navegacion.addLayoutComponent(panelUser, "pUser");

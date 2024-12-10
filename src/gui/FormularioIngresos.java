@@ -22,7 +22,7 @@ public class FormularioIngresos extends  JPanel{
 		private GridLayout gridLayout;
 		private CardLayout cardLayout;
 		
-	public FormularioIngresos(CardLayout cardLayout) {
+	public FormularioIngresos(CardLayout cardLayout,PanelTabla principal) {
 		super();
 		
 		// Hacemos algunos ajustes en el JPanel
@@ -76,9 +76,7 @@ public class FormularioIngresos extends  JPanel{
 		
 			// Añadimos el actionListener
 		cancelar.addActionListener(e ->{
-			
 			cardLayout.show(getParent(), "pTabla");
-			PanelTabla.actualizarOpe();
 		});
 		
 			// Creamos el actionListener para el botón confirmar
@@ -101,6 +99,7 @@ public class FormularioIngresos extends  JPanel{
 				
 				JOptionPane.showMessageDialog(this, "Operación creada con éxito");
 				
+				principal.actualizarOpe();
 				cardLayout.show(getParent(), "pTabla");
 			} catch (Exception ex){
 				JOptionPane.showMessageDialog(this, "Error al crear la operación: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
