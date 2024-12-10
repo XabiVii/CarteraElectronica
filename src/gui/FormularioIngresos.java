@@ -75,7 +75,11 @@ public class FormularioIngresos extends  JPanel{
 		confirmar.setBackground(Color.GREEN);
 		
 			// Añadimos el actionListener
-		cancelar.addActionListener(e -> cardLayout.show(getParent(), "pTabla"));
+		cancelar.addActionListener(e ->{
+			
+			cardLayout.show(getParent(), "pTabla");
+			PanelTabla.actualizarOpe();
+		});
 		
 			// Creamos el actionListener para el botón confirmar
 		
