@@ -101,6 +101,7 @@ public class PanelTabla extends JPanel {
 		modeloDatos.addRow(new Object[] { operaciones.get(operaciones.size()-1).getFecha(), operaciones.get(operaciones.size()-1).getCantidad(), operaciones.get(operaciones.size()-1).getTipoPago(), operaciones.get(operaciones.size()-1).getTipoOperacion(),1000 });
 
 		
+		
 	}
 	
 
