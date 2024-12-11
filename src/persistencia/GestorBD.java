@@ -156,6 +156,7 @@ public class GestorBD {
 		}
 	}
 
+	
 	public List<Operacion> getOperaciones() {
 		List<Operacion> operaciones = new ArrayList<>();
 		String sql = "SELECT * FROM OPERACION";
