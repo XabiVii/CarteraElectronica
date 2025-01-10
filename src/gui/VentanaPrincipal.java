@@ -33,7 +33,6 @@ public class VentanaPrincipal extends JFrame{
 	
 	public VentanaPrincipal() {
 	super();
-	
 	setSize(1200,750);
 	setLocationRelativeTo(null);
 	setTitle(getTITULO());

@@ -59,7 +59,7 @@ public class CreacionUsuario extends JPanel{
 	        //año, mes y dia para la barrita
 	        diasCB = new JComboBox<>();
 	        mesCB = new JComboBox<>(new String[] {
-	                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+	        		"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
 	                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
 	            });
 	        aniosCB = new JComboBox<>();
