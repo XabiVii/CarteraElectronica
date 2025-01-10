@@ -78,9 +78,10 @@ public class PanelTabla extends JPanel {
 		mediaIngreso = new JButton("Media de ingresos");
 
 		new JOptionPane();
-		mediaGasto.addActionListener(e -> JOptionPane.showMessageDialog(this, "La media del Gasto es ..."));
+		mediaGasto.addActionListener(e -> JOptionPane.showMessageDialog(this, "La media de los gastos es: " + gestorBD.getMediaGastos()));
+		
 		new JOptionPane();
-		mediaIngreso.addActionListener(e -> JOptionPane.showMessageDialog(this, "La media de Ingreso es ..."));
+		mediaIngreso.addActionListener(e -> JOptionPane.showMessageDialog(this, "La media de Ingreso es " + gestorBD.getMediaIngresos()));
 		
 		introducirNuevo.addActionListener(e -> cardLayout.show(getParent(), "pNuevo"));
 

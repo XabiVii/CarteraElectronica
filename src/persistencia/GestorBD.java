@@ -239,4 +239,36 @@ public class GestorBD {
 		Operacion operacion = new Operacion("", 1, "", "", "", "");
 		return operacion;
 	}
+	
+	public double getMediaGastos() {
+		try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
+			String sql = "SELECT AVG(CANTIDAD) AS CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'GASTO' ";
+			
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			
+			ResultSet rs = pstmt.executeQuery();
+			double media = rs.getInt("CANTIDAD");
+			
+			return media;
+		} catch (Exception e) {
+			System.out.println("Ha habido un Error");
+			return 0;
+		}
+	}
+	
+	public double getMediaIngresos() {
+		try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
+			String sql = "SELECT AVG(CANTIDAD) AS CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'INGRESO' ";
+			
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			
+			ResultSet rs = pstmt.executeQuery();
+			double media = rs.getInt("CANTIDAD");
+			
+			return media;
+		} catch (Exception e) {
+			System.out.println("Ha habido un Error");
+			return 0;
+		}
+	}
 }
