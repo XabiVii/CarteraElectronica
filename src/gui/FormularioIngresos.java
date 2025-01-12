@@ -117,7 +117,35 @@ public class FormularioIngresos extends  JPanel{
 				// Recopilamos los datos
 				String tipo = String.valueOf(opciones.getSelectedItem());
 				Integer cant = Integer.parseInt((String) cantidad.getText());
-				String fch = String.valueOf(anos.getSelectedItem()) + " - " + String.valueOf(meses.getSelectedItem()) + " - " + String.valueOf(dias.getSelectedItem());
+				
+				String mes = String.valueOf(meses.getSelectedItem());
+				switch (mes) {
+					case "Enero":
+						mes = "1";
+					case "Febrero":
+						mes = "2";
+					case "Marzo":
+						mes = "3";
+					case "Abril":
+						mes = "4";
+					case "Mayo":
+						mes = "5";
+					case "Junio":
+						mes = "6";
+					case "Julio":
+						mes = "7";
+					case "Agosto":
+						mes = "8";
+					case "Septiembre":
+						mes = "9";
+					case "Octubre":
+						mes = "10";
+					case "Noviembre":
+						mes = "11";
+					default:
+						mes = "12";
+				}
+				String fch = String.valueOf(anos.getSelectedItem()) + "-" + mes + "-" + String.valueOf(dias.getSelectedItem());
 				String desc = descripcion.getText();
 				String metPag = String.valueOf(metodoPago.getSelectedItem());
 				String tipoPag = String.valueOf(tipoPago.getSelectedItem());
@@ -169,6 +197,17 @@ public class FormularioIngresos extends  JPanel{
 		
 		JPanel sur = new JPanel();
 		// Ahí poner un thread de tiempo restante: que al llegar a 0 se salga al panel tabla
+		JLabel segundos = new JLabel("Tienes 5 minutos");
+		sur.add(segundos);
 		add(sur, BorderLayout.SOUTH);
+		
+		JPanel este = new JPanel();
+		// Fotos, en plan publicidad
+		add(este, BorderLayout.EAST);
+		
+		JPanel oeste = new JPanel();
+		// Como el este
+		add(oeste, BorderLayout.WEST);
 	}
 }
+
