@@ -1,34 +1,35 @@
 package threads;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-import gui.VentanaPrincipal;
-
-public class SalvaPantallas extends JFrame {
+public class SalvaPantallas extends JPanel {
     private static final long serialVersionUID = 1L;
     private int x = 50, y = 50; // Posición inicial del círculo
     private int dx = 2, dy = 2; // Dirección del movimiento del círculo
     private final int RADIUS = 30; // Radio del círculo
-
-    public SalvaPantallas() {
-        setTitle("Salvapantallas");
+    
+    @SuppressWarnings("unused")
+	private CardLayout navegacion;
+    
+    public SalvaPantallas(CardLayout navegacion) {
+    	this.navegacion=navegacion;
+    	setBackground(new Color(90,90,90));
         setSize(1200,750);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
+        JLabel x=new JLabel("Salva Pantallas");
+        add(x);
 
         //al hacer clic, cerrar el salvapantallas y volver a la ventana principal
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                dispose(); // Cierra el salvapantallas
-                VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
-                ventanaPrincipal.setVisible(true); // Muestra la ventana principal
+            	navegacion.show(getParent(), "pUser");
             }
         });
 

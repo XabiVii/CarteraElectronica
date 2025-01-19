@@ -4,21 +4,22 @@ import javax.swing.*;
 
 import gui.VentanaPrincipal;
 
+import java.awt.CardLayout;
 import java.awt.event.*;
 
 public class PantallaConSalvapantallas {
 	private Timer timersalvapantallas;
+    private CardLayout navegacion;
+    private JPanel panelAnterior=null;
     private VentanaPrincipal ventanaPrincipal;
     
-    public PantallaConSalvapantallas(VentanaPrincipal ventanaPrincipal) {
+    public PantallaConSalvapantallas(VentanaPrincipal ventanaPrincipal ,CardLayout navegacion) {
     	this.ventanaPrincipal = ventanaPrincipal;
+    	this.navegacion=navegacion;
     	//2 minutos de incactividad para que se inice
-    	timersalvapantallas = new Timer(120000, e -> {
-            ventanaPrincipal.setVisible(false); //ocultar la ventana principal
-            SalvaPantallas salvapantallas = new SalvaPantallas();
-            salvapantallas.setVisible(true);
+    	timersalvapantallas = new Timer(30000, e -> {
+            navegacion.show(ventanaPrincipal.getContentPane(), "pSalva");
         });
-    	timersalvapantallas.setRepeats(false); //se ejecuta solo una vez hasta que se reinicie asi no hay 400 salva pantallas
     	
     	//actividad usuario
     	ventanaPrincipal.addMouseMotionListener(new UserActivityListener());
@@ -31,6 +32,7 @@ public class PantallaConSalvapantallas {
         @Override
         public void mouseMoved(MouseEvent e) {
         	reseteotimer(); //se reinicia 
+        	
         }
 
         @Override
@@ -46,7 +48,11 @@ public class PantallaConSalvapantallas {
         if (timersalvapantallas.isRunning()) {
             timersalvapantallas.stop(); //detiene el timer
         }
-        timersalvapantallas.start(); //reinicia el timer
+    	timersalvapantallas = new Timer(30000, e -> {
+            navegacion.show(ventanaPrincipal.getContentPane(), "pSalva");
+        });    
+    	System.out.println("holaa");
+    	timersalvapantallas.start();
     }
     
 }
