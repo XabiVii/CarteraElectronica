@@ -6,12 +6,12 @@ public class Usuario {
 	
 	private String nombre;
     private String apellido;
-    private String id;
+    private int id;
     private String correoElectronico;
     private String contrasena;
     private LocalDate fechaNacimiento;
 
-    public Usuario(String nombre, String apellido, String correoElectronico, String contrasena, String id, LocalDate fechaNacimiento) {
+    public Usuario(String nombre, String apellido, String correoElectronico, String contrasena, int id, LocalDate fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correoElectronico = correoElectronico;
@@ -40,11 +40,11 @@ public class Usuario {
 		return apellido;
 	}
 
-    public String getId() {
+    public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
     

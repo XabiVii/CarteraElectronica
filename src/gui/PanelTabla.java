@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
@@ -21,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import domain.Operacion;
+import domain.Usuario;
 import persistencia.GestorBD;
 
 public class PanelTabla extends JPanel {
@@ -40,15 +42,16 @@ public class PanelTabla extends JPanel {
 	private static List<Operacion> operaciones;
 	private Vector<String> cabecera = new Vector<String>(Arrays.asList("FECHA", "IMPORTE", "TIPO", "OPERACION", "BALANCE"));
 
+	Usuario actual;
 
-	public PanelTabla(CardLayout cardLayout) {
+	public PanelTabla(CardLayout cardLayout,VentanaPrincipal principal) {
 		gestorBD=new GestorBD();
 		setLayout(new BorderLayout());
 		navegacion = cardLayout;
-
+		actual=principal.actual;
 		initTabla();
 		
-		operaciones=gestorBD.getOperaciones();
+		operaciones=new ArrayList<>();
 		
 		for (Operacion ope: operaciones) {
 			modeloDatos.addRow(new Object[] { ope.getFecha(), ope.getCantidad(), ope.getTipoPago(), ope.getTipoOperacion(),1000 });
@@ -92,13 +95,16 @@ public class PanelTabla extends JPanel {
 		setSize(1200, 750);
 
 	}
+	
 	public void actualizarOpe() {
-		operaciones=gestorBD.getOperaciones();
+		operaciones=gestorBD.getOperaciones(actual.getId());
 		System.out.println(operaciones);
-		modeloDatos.addRow(new Object[] { operaciones.get(operaciones.size()-1).getFecha(), operaciones.get(operaciones.size()-1).getCantidad(), operaciones.get(operaciones.size()-1).getTipoPago(), operaciones.get(operaciones.size()-1).getTipoOperacion(),1000 });
-
-		
-		
+		for (int i = 0; i < modeloDatos.getRowCount(); i++) {
+			modeloDatos.removeRow(i);
+		}
+		for (Operacion ope: operaciones) {
+			modeloDatos.addRow(new Object[] { ope.getFecha(), ope.getCantidad(), ope.getTipoPago(), ope.getTipoOperacion(),1000 });
+		}
 	}
 	
 
@@ -114,32 +120,40 @@ public class PanelTabla extends JPanel {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
 					boolean hasFocus, int row, int column) {
+				
+				Color c;
+
 
 				if (row % 2 == 0) {
-					Color c;
 					if (hasFocus) {
 						c = table.getSelectionBackground();
 					} else {
 						c = new Color(250, 249, 249);
-					}
-
-						JLabel x = new JLabel(value.toString());
-						if (value instanceof Integer || column==0) {
-							x.setHorizontalAlignment(0);
-						} else {
-							x.setHorizontalAlignment(2);
+						if (column==3 && value.toString().equals("INGRESO")) {
+							c=Color.GREEN;
+						}else if(column==3 && value.toString().equals("GASTO")) {
+							c=Color.RED;					
 						}
-						x.setOpaque(true);
-						x.setBackground(c);
-						return x;
-					
-
+					}
+					JLabel x = new JLabel(value.toString());
+					if (value instanceof Integer || column==0) {
+						x.setHorizontalAlignment(0);
+					} else {
+						x.setHorizontalAlignment(2);
+					}
+					x.setOpaque(true);
+					x.setBackground(c);
+					return x;
 				} else {
-					Color c;
 					if (hasFocus) {
 						c = table.getSelectionBackground();
 					} else {
 						c = new Color(190, 227, 219);
+						if (column==3 && value.toString().equals("INGRESO")) {
+							c=Color.GREEN;
+						}else if(column==3 && value.toString().equals("GASTO")) {
+							c=Color.RED;					
+						}
 					}
 						JLabel x = new JLabel(value.toString());
 
@@ -155,6 +169,7 @@ public class PanelTabla extends JPanel {
 				}
 
 			}
+				
 		};
 		tabla.setRowHeight(26);
 		tabla.setDefaultRenderer(Object.class, tableCell);

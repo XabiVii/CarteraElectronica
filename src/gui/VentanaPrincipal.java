@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import domain.Usuario;
 import threads.PantallaConSalvapantallas;
 import threads.SalvaPantallas;
 
@@ -37,6 +38,8 @@ public class VentanaPrincipal extends JFrame{
 	private CardLayout navegacion;
 	
 	private Timer timersalvapantallas;
+	
+	public Usuario actual;
 
 	
 	public VentanaPrincipal() {
@@ -60,11 +63,12 @@ public class VentanaPrincipal extends JFrame{
 	
 	
 	private void añadirPaneles() {
-		panelUser = new PanelUserSelection(navegacion);
 		
 		panelCreacionUsuario = new CreacionUsuario(navegacion);
 
-		panelTabla=new PanelTabla(navegacion);
+		panelTabla=new PanelTabla(navegacion, this);
+		
+		panelUser = new PanelUserSelection(navegacion,this,panelTabla);
 		
 		panelNuevoOpe=new FormularioIngresos(navegacion,panelTabla);
 		

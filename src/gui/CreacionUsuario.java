@@ -149,7 +149,7 @@ public class CreacionUsuario extends JPanel{
 
 	                //Crear un nuevo usuario
 	                
-	                Usuario nuevoUsuario = new Usuario(nombre, apellido, correo, contrasena, String.valueOf(countIDUser), fechaNacimiento);
+	                Usuario nuevoUsuario = new Usuario(nombre, apellido, correo, contrasena,countIDUser, fechaNacimiento);
 	                countIDUser++;
 	                System.out.println(nuevoUsuario.getId());
 	                //Guardar en la base de datos

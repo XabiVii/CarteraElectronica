@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -13,19 +14,26 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import domain.Usuario;
+import persistencia.GestorBD;
+
 public class PanelUserSelection extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
     private CardLayout cardLayout;
     private JPanel cardPanel;
+    GestorBD gbd;
+    VentanaPrincipal principal;
+    PanelTabla tabla;
 
-    public PanelUserSelection(CardLayout navegacion) {
-    	
+    public PanelUserSelection(CardLayout navegacion,VentanaPrincipal principal,PanelTabla tabla) {
+    	this.principal=principal;
+    	this.tabla=tabla;
     	setSize(1200,750);
     	setLayout(new FlowLayout(1, 30, 275)); //el contenedor
         JButton registro = new JButton("Inicio Sesión");
         registro.setFont(new Font("Arial", Font.BOLD, 14));
-        
+        gbd=new GestorBD();
         this.setBackground(new Color(90,90,90));
         
         cardLayout = navegacion;
@@ -62,15 +70,23 @@ public class PanelUserSelection extends JPanel{
         
         
         registro.addActionListener(e -> {
-            cardLayout.show(getParent(), "pTabla"); //vuelve pa atras
-        	/*
+            //cardLayout.show(getParent(), "pTabla"); //vuelve pa atras
+        	
             String username = JOptionPane.showInputDialog(null, "username:");
             String password = JOptionPane.showInputDialog(null, "password:");
-            if (username!=null && password!=null && username.equals("usuario") && password.equals("contraseña")) {
-                JOptionPane.showMessageDialog(null, "Bienvenido");//esto es para probar de cara a lo proximo
-            } else {
+            List<Usuario> x=gbd.obtenerUsuario();
+            for (Usuario usuario : x) {
+            	System.out.println(usuario);
+                if (username.equals(usuario.getNombre()) && password.equals(usuario.getContrasena()) || username.equals("usuario") && password.equals("contraseña")) {
+                	principal.actual=usuario;
+                	gbd.cambiarUsuario(gbd.obtenerIdUsuario(usuario));
+                	tabla.actual=usuario;
+                	tabla.actualizarOpe();
+                	cardLayout.show(getParent(), "pTabla");
+                	return;
+                	}
+                }
                 JOptionPane.showMessageDialog(null, "Invalido");
-            }*/
         });
         
     }

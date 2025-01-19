@@ -19,6 +19,8 @@ public class GestorBD {
 	protected static String CONNECTION_STRING;
 	private static int id_Operacion = 1;
 	private static int id_userActual = 1;
+	
+	private Usuario actual;
 
 	public GestorBD() {
 		try {
@@ -103,11 +105,30 @@ public class GestorBD {
 				System.out.println("--> Usuario insertado: " + usuario);
 				pstmt.close();
 			}
-			id_userActual = Integer.parseInt(usuario.getId());
+			usuario.setId(obtenerIdUsuario(usuario));
 		} catch (Exception ex) {
 			System.err.format("\n* Error al insertar datos de la BDD: %s", ex.getMessage());
 			ex.printStackTrace();
 		}
+	}
+	
+	public int obtenerIdUsuario(Usuario usuario) {
+		int id = -1;
+		try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
+			String sql = "SELECT ID FROM USUARIO WHERE CORREO=?";
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+					pstmt.setString(1, usuario.getCorreoElectronico());
+					ResultSet rsltst = pstmt.executeQuery();
+					id=rsltst.getInt("ID");
+					pstmt.close();
+				
+			}
+
+		} catch (Exception ex) {
+			System.err.format("\n* Error al obtener ID de la BDD: %s", ex.getMessage());
+			ex.printStackTrace();
+		}
+		return id;
 	}
 
 	public List<Usuario> obtenerUsuario() {
@@ -121,10 +142,10 @@ public class GestorBD {
 				while (rsltst.next()) {
 					Usuario usuario = new Usuario(rsltst.getString("NOMBRE"), rsltst.getString("APELLIDO"),
 							rsltst.getString("CORREO"), rsltst.getString("PASSWORD"),
-							String.valueOf(rsltst.getInt("ID")), LocalDate.parse(rsltst.getString("FECHA_NACIMIENTO")));
+							rsltst.getInt("ID"), LocalDate.parse(rsltst.getString("FECHA_NACIMIENTO")));
 					usuarios.add(usuario);
-					pstmt.close();
 				}
+				pstmt.close();
 			}
 
 		} catch (Exception ex) {
@@ -157,6 +178,36 @@ public class GestorBD {
 	}
 
 	
+	public List<Operacion> getOperaciones(int id) {
+		List<Operacion> operaciones = new ArrayList<>();
+		String sql = "SELECT * FROM OPERACION WHERE ID_USUARIO=?";
+
+		// Se abre la conexión y se crea el PreparedStatement con la sentencia SQL
+		try (Connection con = DriverManager.getConnection(CONNECTION_STRING);
+				PreparedStatement pStmt = con.prepareStatement(sql)) {
+				pStmt.setInt(1, id);
+			// Se ejecuta la sentencia y se obtiene el ResultSet
+			ResultSet rs = pStmt.executeQuery();
+			Operacion ope;
+
+			// Se recorre el ResultSet y se crean objetos
+			while (rs.next()) {//String tipoOp, Integer cant, String fch, String desp, String metPago, String tipoPa
+				ope = new Operacion(rs.getString("TIPOOPERACION"), rs.getInt("CANTIDAD"), rs.getString("FECHA"),
+						rs.getString("DESCRIPCION"),rs.getString("METODOPAGO"),rs.getString("TIPOPAGO"));
+
+				// Se inserta cada nuevo cliente en la lista de clientes
+				operaciones.add(ope);
+			}
+	        
+			rs.close();
+
+		} catch (Exception ex) {
+		}
+		System.out.println(operaciones);
+		System.out.println("operaciones recibidas con exito");
+		return operaciones;
+	}
+	
 	public List<Operacion> getOperaciones() {
 		List<Operacion> operaciones = new ArrayList<>();
 		String sql = "SELECT * FROM OPERACION";
@@ -164,7 +215,6 @@ public class GestorBD {
 		// Se abre la conexión y se crea el PreparedStatement con la sentencia SQL
 		try (Connection con = DriverManager.getConnection(CONNECTION_STRING);
 				PreparedStatement pStmt = con.prepareStatement(sql)) {
-
 			// Se ejecuta la sentencia y se obtiene el ResultSet
 			ResultSet rs = pStmt.executeQuery();
 			Operacion ope;
@@ -188,7 +238,7 @@ public class GestorBD {
 
 	public void insertarOperacion(Operacion operacion) {
 		try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {// corregir id usuario
-			String sql = "INSERT INTO OPERACION (TIPOOPERACION, CANTIDAD, FECHA, DESCRIPCION, METODOPAGO, TIPOPAGO,  BALANCE,ID_USUARIO) VALUES (?,?,?,?,?,?,?,1)";
+			String sql = "INSERT INTO OPERACION (TIPOOPERACION, CANTIDAD, FECHA, DESCRIPCION, METODOPAGO, TIPOPAGO,  BALANCE,ID_USUARIO) VALUES (?,?,?,?,?,?,?,?)";
 
 			PreparedStatement pstmt = con.prepareStatement(sql);
 
@@ -204,6 +254,7 @@ public class GestorBD {
 			pstmt.setString(4, operacion.getDescripción());
 			pstmt.setString(5, operacion.getMetodoPago());
 			pstmt.setString(6, operacion.getTipoPago());
+			pstmt.setInt(8, id_userActual);
 
 			// Calculamos el balance actual
 
@@ -270,5 +321,9 @@ public class GestorBD {
 			System.out.println("Ha habido un Error");
 			return 0;
 		}
+	}
+	
+	public void cambiarUsuario(int id) {
+		id_userActual=id;
 	}
 }
