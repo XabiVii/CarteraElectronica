@@ -158,13 +158,14 @@ public class GestorBD {
 	public int getBalance() {
 		int balance_tot = 0;
 		try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
-			String sql_in = "SELECT CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'INGRESO'";
-			String sql_gas = "SELECT CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'GASTO'";
+			String sql_in = "SELECT CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'INGRESO' AND ID_USUARIO = " + String.valueOf(id_userActual);
+			String sql_gas = "SELECT CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'GASTO' AND ID_USUARIO = " + String.valueOf(id_userActual);
 
 			try (PreparedStatement pstmt = con.prepareStatement(sql_in); ResultSet rsltst = pstmt.executeQuery()) {
 				balance_tot += rsltst.getInt("CANTIDAD");
+				System.out.println(balance_tot);
 			}
-
+			System.out.println(balance_tot);
 			try (PreparedStatement pstmt = con.prepareStatement(sql_gas); ResultSet rsltst = pstmt.executeQuery()) {
 				balance_tot -= rsltst.getInt("CANTIDAD");
 			}
@@ -173,6 +174,20 @@ public class GestorBD {
 		} catch (Exception ex) {
 			System.err.format("\n* Error al obtener el balance de la BDD", ex.getMessage());
 			ex.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public int getBalance2() {
+		try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
+			String sql = "SELECT BALANCE FROM OPERACION WHERE ID = " + String.valueOf(id_userActual);
+			
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rsltst = pstmt.executeQuery();
+			return rsltst.getInt("CANTIDAD");
+		} catch (Exception e) {
+			System.err.format("Error al obtener los datos", e.getMessage());
+			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -269,9 +284,6 @@ public class GestorBD {
 
 			pstmt.setInt(7, balance);
 
-			// hay q corregir esto
-			// pstmt.setInt(9, id_userActual);
-
 			if (1 == pstmt.executeUpdate()) {
 				System.out.println("\n --> Operación insertada ");
 			} else {
@@ -293,7 +305,7 @@ public class GestorBD {
 	
 	public double getMediaGastos() {
 		try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
-			String sql = "SELECT AVG(CANTIDAD) AS CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'GASTO' ";
+			String sql = "SELECT AVG(CANTIDAD) AS CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'GASTO' AND ID_USUARIO = " + String.valueOf(id_userActual);
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			
@@ -309,7 +321,7 @@ public class GestorBD {
 	
 	public double getMediaIngresos() {
 		try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
-			String sql = "SELECT AVG(CANTIDAD) AS CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'INGRESO' ";
+			String sql = "SELECT AVG(CANTIDAD) AS CANTIDAD FROM OPERACION WHERE TIPOOPERACION = 'INGRESO' AND ID_USUARIO = " + id_userActual;
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			

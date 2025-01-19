@@ -54,7 +54,7 @@ public class PanelTabla extends JPanel {
 		operaciones=new ArrayList<>();
 		
 		for (Operacion ope: operaciones) {
-			modeloDatos.addRow(new Object[] { ope.getFecha(), ope.getCantidad(), ope.getTipoPago(), ope.getTipoOperacion(),1000 });
+			modeloDatos.addRow(new Object[] { ope.getFecha(), ope.getCantidad(), ope.getTipoPago(), ope.getTipoOperacion(), gestorBD.getBalance2() });
 		}
 		
 		
@@ -103,7 +103,7 @@ public class PanelTabla extends JPanel {
 			modeloDatos.removeRow(i);
 		}
 		for (Operacion ope: operaciones) {
-			modeloDatos.addRow(new Object[] { ope.getFecha(), ope.getCantidad(), ope.getTipoPago(), ope.getTipoOperacion(),1000 });
+			modeloDatos.addRow(new Object[] { ope.getFecha(), ope.getCantidad(), ope.getTipoPago(), ope.getTipoOperacion(),1000});
 		}
 	}
 	
