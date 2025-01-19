@@ -31,7 +31,7 @@ public class PanelUserSelection extends JPanel{
         cardPanel = new JPanel(cardLayout);
         
         //crear el panel de selección de usuario (Primer panel)
-        JPanel panelSeleccionUsuario = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel panelSeleccionUsuario = new JPanel(new FlowLayout());
         panelSeleccionUsuario.setBackground(new Color(224, 255, 255));
         
         //cargar la imagen para el botón
@@ -42,8 +42,8 @@ public class PanelUserSelection extends JPanel{
         nuevoUsuarioFotoPrueba.setBorderPainted(false);
         
         
-        panelSeleccionUsuario.add(registro);
-        panelSeleccionUsuario.add(nuevoUsuarioFotoPrueba);
+        panelSeleccionUsuario.add(registro,BorderLayout.CENTER);
+        panelSeleccionUsuario.add(nuevoUsuarioFotoPrueba,BorderLayout.CENTER);
         
         //crear el panel de añadir texto
 
