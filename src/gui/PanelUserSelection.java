@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -21,19 +22,16 @@ public class PanelUserSelection extends JPanel{
     public PanelUserSelection(CardLayout navegacion) {
     	
     	setSize(1200,750);
-    	setLayout(new BorderLayout()); //el contenedor
+    	setLayout(new FlowLayout(1, 30, 275)); //el contenedor
         JButton registro = new JButton("Inicio Sesión");
         registro.setFont(new Font("Arial", Font.BOLD, 14));
-        registro.setBackground(new Color(30, 144, 255));
-        registro.setForeground(Color.WHITE);
+        
+        this.setBackground(new Color(90,90,90));
         
         cardLayout = navegacion;
         cardPanel = new JPanel(cardLayout);
         
         //crear el panel de selección de usuario (Primer panel)
-        JPanel panelSeleccionUsuario = new JPanel(new FlowLayout());
-        panelSeleccionUsuario.setBackground(new Color(224, 255, 255));
-        
         //cargar la imagen para el botón
         ImageIcon nuevoUsuarioIcon = new ImageIcon("resources/images/Webp.net-resizeimage.png"); 
         JButton nuevoUsuarioFotoPrueba = new JButton(nuevoUsuarioIcon); //crea el botón con la imagen
@@ -42,14 +40,14 @@ public class PanelUserSelection extends JPanel{
         nuevoUsuarioFotoPrueba.setBorderPainted(false);
         
         
-        panelSeleccionUsuario.add(registro,BorderLayout.CENTER);
-        panelSeleccionUsuario.add(nuevoUsuarioFotoPrueba,BorderLayout.CENTER);
+        add(registro,BorderLayout.CENTER);
+        add(nuevoUsuarioFotoPrueba,BorderLayout.CENTER);
         
         //crear el panel de añadir texto
 
         
         //al CardLayout le añado los dos panales
-        cardPanel.add(panelSeleccionUsuario, "SeleccionUsuario"); //primer panel
+        cardPanel.add(this, "SeleccionUsuario"); //primer panel
 
         //Nuevo Usuario
         nuevoUsuarioFotoPrueba.addActionListener(e -> {
@@ -74,7 +72,6 @@ public class PanelUserSelection extends JPanel{
                 JOptionPane.showMessageDialog(null, "Invalido");
             }*/
         });
-        add(cardPanel,BorderLayout.CENTER); 
         
     }
     
