@@ -2,6 +2,7 @@
 .classpath
 .project
 .settings/
-
 # Código compilado
 bin/
+
+copiaResources/
