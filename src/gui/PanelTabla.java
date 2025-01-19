@@ -9,6 +9,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -23,6 +25,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import domain.Operacion;
+import persistencia.GestorBD;
+
 public class PanelTabla extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -35,18 +40,24 @@ public class PanelTabla extends JPanel {
 	private JButton introducirNuevo;
 	private JButton mediaGasto;
 	private JButton mediaIngreso;
+	private GestorBD gestorBD;
+	private static List<Operacion> operaciones;
+	private Vector<String> cabecera = new Vector<String>(Arrays.asList("FECHA", "IMPORTE", "TIPO", "OPERACION", "BALANCE"));
+
 
 	public PanelTabla(CardLayout cardLayout) {
+		gestorBD=new GestorBD();
 		setLayout(new BorderLayout());
 		navegacion = cardLayout;
 
 		initTabla();
 		
-		modeloDatos.addRow(new Object[] { "11/11", 700, "Ocio", "Gasto",1000 });
-		modeloDatos.addRow(new Object[] { "03/12", 50, "Comida", "Gasto", 950});
-		modeloDatos.addRow(new Object[] { "05/02", 1400, "Nomina", "Ingreso",2350 });
-		modeloDatos.addRow(new Object[] { "27/04", 10, "Bizum", "Gasto",2360 });
-		modeloDatos.addRow(new Object[] { "21/6", 850, "Alquiler", "Gasto",1510 });
+		operaciones=gestorBD.getOperaciones();
+		
+		for (Operacion ope: operaciones) {
+			modeloDatos.addRow(new Object[] { ope.getFecha(), ope.getCantidad(), ope.getTipoPago(), ope.getTipoOperacion(),1000 });
+		}
+		
 		
 
 		scrollPaneTabla = new JScrollPane(tabla);
@@ -67,9 +78,10 @@ public class PanelTabla extends JPanel {
 		mediaIngreso = new JButton("Media de ingresos");
 
 		new JOptionPane();
-		mediaGasto.addActionListener(e -> JOptionPane.showMessageDialog(this, "La media del Gasto es ..."));
+		mediaGasto.addActionListener(e -> JOptionPane.showMessageDialog(this, "La media de los gastos es: " + gestorBD.getMediaGastos()));
+		
 		new JOptionPane();
-		mediaIngreso.addActionListener(e -> JOptionPane.showMessageDialog(this, "La media de Ingreso es ..."));
+		mediaIngreso.addActionListener(e -> JOptionPane.showMessageDialog(this, "La media de Ingreso es " + gestorBD.getMediaIngresos()));
 		
 		introducirNuevo.addActionListener(e -> cardLayout.show(getParent(), "pNuevo"));
 
@@ -84,12 +96,20 @@ public class PanelTabla extends JPanel {
 		setBackground(Color.BLACK);
 
 	}
+	public void actualizarOpe() {
+		operaciones=gestorBD.getOperaciones();
+		System.out.println(operaciones);
+		modeloDatos.addRow(new Object[] { operaciones.get(operaciones.size()-1).getFecha(), operaciones.get(operaciones.size()-1).getCantidad(), operaciones.get(operaciones.size()-1).getTipoPago(), operaciones.get(operaciones.size()-1).getTipoOperacion(),1000 });
+
+		
+		
+	}
+	
 
 	private void initTabla() {
-		Vector<String> cabecera = new Vector<String>(Arrays.asList("FECHA", "IMPORTE", "TIPO", "OPERACION", "BALANCE"));
 
 		modeloDatos = new DefaultTableModel(new Vector<Vector<Object>>(), cabecera);
-
+		
 		tabla = new JTable(modeloDatos);
 
 		tabla.getTableHeader().setReorderingAllowed(false);

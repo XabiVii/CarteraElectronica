@@ -27,6 +27,7 @@ public class CreacionUsuario extends JPanel{
 	    private JComboBox<String> diasCB, mesCB, aniosCB;
 	    private CardLayout cardLayout;
 	    private JLabel correoErrorLabel;
+	    private static int countIDUser;
 
 	    public CreacionUsuario(CardLayout cardLayout) {
 	    	this.cardLayout=cardLayout;
@@ -58,7 +59,7 @@ public class CreacionUsuario extends JPanel{
 	        //año, mes y dia para la barrita
 	        diasCB = new JComboBox<>();
 	        mesCB = new JComboBox<>(new String[] {
-	                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+	        		"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
 	                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
 	            });
 	        aniosCB = new JComboBox<>();
@@ -148,8 +149,9 @@ public class CreacionUsuario extends JPanel{
 
 	                //Crear un nuevo usuario
 	                
-	                Usuario nuevoUsuario = new Usuario(nombre, apellido, correo, contrasena, "", fechaNacimiento);
-
+	                Usuario nuevoUsuario = new Usuario(nombre, apellido, correo, contrasena, String.valueOf(countIDUser), fechaNacimiento);
+	                countIDUser++;
+	                System.out.println(nuevoUsuario.getId());
 	                //Guardar en la base de datos
 	                GestorBD gestorBD = new GestorBD();
 	                gestorBD.insertarUsuario(nuevoUsuario);

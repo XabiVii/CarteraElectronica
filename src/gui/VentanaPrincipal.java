@@ -33,7 +33,6 @@ public class VentanaPrincipal extends JFrame{
 	
 	public VentanaPrincipal() {
 	super();
-	
 	setSize(1200,750);
 	setLocationRelativeTo(null);
 	setTitle(getTITULO());
@@ -61,7 +60,7 @@ public class VentanaPrincipal extends JFrame{
 
 		panelTabla=new PanelTabla(navegacion);
 		
-		panelNuevoOpe=new FormularioIngresos(navegacion);
+		panelNuevoOpe=new FormularioIngresos(navegacion,panelTabla);
 		
 		navegacion.addLayoutComponent(panelTabla, "pTabla");
 		navegacion.addLayoutComponent(panelUser, "pUser");
