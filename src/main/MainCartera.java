@@ -4,7 +4,6 @@ import javax.swing.SwingUtilities;
 
 import gui.VentanaPrincipal;
 import persistencia.GestorBD;
-import recursividad.CreacionRecursiva;
 
 public class MainCartera {
 

@@ -18,10 +18,12 @@ import domain.Operacion;
 import domain.TiposPago;
 import persistencia.GestorBD;
 
+@SuppressWarnings("serial")
 public class FormularioIngresos extends  JPanel{
 		
 		private BorderLayout borderLayout;
 		private GridLayout gridLayout;
+		@SuppressWarnings("unused")
 		private CardLayout cardLayout;
 
 	public FormularioIngresos(CardLayout cardLayout,PanelTabla principal) {

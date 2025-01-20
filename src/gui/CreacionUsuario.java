@@ -25,7 +25,8 @@ public class CreacionUsuario extends JPanel{
 	    private JButton aceptar, cancelar;
 	    private Usuario usuario;
 	    private JComboBox<String> diasCB, mesCB, aniosCB;
-	    private CardLayout cardLayout;
+	    @SuppressWarnings("unused")
+		private CardLayout cardLayout;
 	    private JLabel correoErrorLabel;
 	    private static int countIDUser;
 

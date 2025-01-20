@@ -10,7 +10,8 @@ import java.awt.event.*;
 public class PantallaConSalvapantallas {
 	private Timer timersalvapantallas;
     private CardLayout navegacion;
-    private JPanel panelAnterior=null;
+    @SuppressWarnings("unused")
+	private JPanel panelAnterior=null;
     private VentanaPrincipal ventanaPrincipal;
     
     public PantallaConSalvapantallas(VentanaPrincipal ventanaPrincipal ,CardLayout navegacion) {
