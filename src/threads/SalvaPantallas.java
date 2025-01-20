@@ -8,7 +8,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+//herramienta: chatGpt
+//Todo lo que se ha usado con IA tiene que ver con los radios y direcciones
 public class SalvaPantallas extends JPanel {
     private static final long serialVersionUID = 1L;
     private int x = 50, y = 50; // Posición inicial del círculo
@@ -42,12 +43,13 @@ public class SalvaPantallas extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.BLUE); //azul pero se pondrá el logo
-        g.fillOval(x - RADIUS, y - RADIUS, 2 * RADIUS, 2 * RADIUS); 
+        g.fillOval(x - RADIUS, y - RADIUS, 2 * RADIUS, 2 * RADIUS); //uso de IA para los radios
     }
 
     // Clase interna para manejar la animación
     private class ScreensaverRunnable implements Runnable {
-        @Override
+    	//Uso de IA para aplicar las direcciones de los bordes
+    	@Override
         public void run() {
             while (true) {
                 x += dx;
