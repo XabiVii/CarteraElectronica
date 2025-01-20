@@ -16,24 +16,25 @@ public class CreacionRecursiva {
 		try {
 			copiaSeguridad(resources, new File("copiaResources"));
 		} catch (IOException e) {
-			System.out.println(String.format("Error con los archivos %s", e));
+			System.out.println("Error con los archivos");
+			System.out.println(e);
 		}
 	}
 	
-	private void copiaSeguridad(File carpetaOriginal, File carpetaBackup) throws IOException {
+	private void copiaSeguridad(File carpetaOriginal, File carpetaCopia) throws IOException {
 	    File[] archivos = carpetaOriginal.listFiles();
 	    if (archivos != null) {
-	        for (File archivo : archivos) {
+	        for (File archivo : archivos) {//Recorremos todos los archivos de la carpeta.
 	            if (archivo.isDirectory()) {
 	            	//Si el objeto tipo file es un directorio crea una nueva carpeta en la direccion de la copia
-	            	File carpetaNueva = new File(carpetaBackup, archivo.getName());
+	            	File carpetaNueva = new File(carpetaCopia, archivo.getName());
 	                carpetaNueva.mkdirs();
 	                copiaSeguridad(archivo, carpetaNueva);//LLama al metodo recursivo dentro de la carpeta a copiar.
-	            } else {
-	            	File copia=new File(carpetaBackup, archivo.getName());
+	            } else {//si es un archivo
+	            	File copia=new File(carpetaCopia, archivo.getName());
 	            	if(copia.exists()) {//si en la carpeta a copiar existe el archivo primero lo borra y luego hace una nueva copia
 	            		copia.delete();
-	            		copia=new File(carpetaBackup, archivo.getName()); 
+	            		copia=new File(carpetaCopia, archivo.getName()); 
 	            	}
 	                Files.copy(archivo.toPath(), copia.toPath());
 	            }
