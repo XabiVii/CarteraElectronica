@@ -178,17 +178,21 @@ public class GestorBD {
 		}
 	}
 	
-	public int getBalance2() {
+	public ArrayList<Integer> getBalance2() {
+		ArrayList<Integer> resultado = new ArrayList<Integer>();
 		try (Connection con = DriverManager.getConnection(CONNECTION_STRING)) {
-			String sql = "SELECT BALANCE FROM OPERACION WHERE ID = " + String.valueOf(id_userActual);
+			String sql = "SELECT BALANCE FROM OPERACION WHERE ID_USUARIO = " + String.valueOf(id_userActual);
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rsltst = pstmt.executeQuery();
-			return rsltst.getInt("CANTIDAD");
+			while(rsltst.next()) {
+				resultado.add(rsltst.getInt("BALANCE"));
+			}
+			return resultado;
 		} catch (Exception e) {
 			System.err.format("Error al obtener los datos", e.getMessage());
 			e.printStackTrace();
-			return 0;
+			return resultado;
 		}
 	}
 

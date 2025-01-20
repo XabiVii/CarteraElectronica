@@ -52,9 +52,11 @@ public class PanelTabla extends JPanel {
 		initTabla();
 		
 		operaciones=new ArrayList<>();
+		int indice_Balance = 0;
 		
 		for (Operacion ope: operaciones) {
-			modeloDatos.addRow(new Object[] { ope.getFecha(), ope.getCantidad(), ope.getTipoPago(), ope.getTipoOperacion(), gestorBD.getBalance2() });
+			modeloDatos.addRow(new Object[] { ope.getFecha(), ope.getCantidad(), ope.getTipoPago(), ope.getTipoOperacion(), gestorBD.getBalance2().get(indice_Balance)});
+			indice_Balance++;
 		}
 		
 		
@@ -102,8 +104,10 @@ public class PanelTabla extends JPanel {
 		for (int i = 0; i < modeloDatos.getRowCount(); i++) {
 			modeloDatos.removeRow(i);
 		}
+		int indice_Balance = 0;
 		for (Operacion ope: operaciones) {
-			modeloDatos.addRow(new Object[] { ope.getFecha(), ope.getCantidad(), ope.getTipoPago(), ope.getTipoOperacion(),1000});
+			modeloDatos.addRow(new Object[] { ope.getFecha(), ope.getCantidad(), ope.getTipoPago(), ope.getTipoOperacion(), gestorBD.getBalance2().get(indice_Balance)});
+			indice_Balance++;
 		}
 	}
 	
