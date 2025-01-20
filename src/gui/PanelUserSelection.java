@@ -35,7 +35,7 @@ public class PanelUserSelection extends JPanel{
         registro.setFont(new Font("Arial", Font.BOLD, 14));
         gbd=new GestorBD();
         this.setBackground(new Color(90,90,90));
-        JButton copiaSeguridadRecusiva = new JButton("Copia de seguridad");
+        JButton copiaSeguridadRecusiva = new JButton("Copia de Seguridad");
         copiaSeguridadRecusiva.setFont(new Font("Arial", Font.BOLD, 14));
         
         
