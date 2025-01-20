@@ -193,7 +193,7 @@ public class PanelTabla extends JPanel {
 		// únicamente una fila
 		tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// Se define el comportamiento el evento de selección de una fila de la tabla
-		tabla.getSelectionModel().addListSelectionListener(e ->	{System.out.println("aaa");});
+		tabla.getSelectionModel().addListSelectionListener(e ->	{});
 
 	}
 
