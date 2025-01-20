@@ -36,7 +36,7 @@ public class PanelUserSelection extends JPanel{
         registro.setFont(new Font("Arial", Font.BOLD, 14));
         gbd=new GestorBD();
         this.setBackground(new Color(90,90,90));
-        JButton copiaSeguridadRecusiva = new JButton("Hacer Copia de seguridad Recursiva");
+        JButton copiaSeguridadRecusiva = new JButton("Copia de seguridad");
         copiaSeguridadRecusiva.setFont(new Font("Arial", Font.BOLD, 14));
         
         
@@ -85,7 +85,7 @@ public class PanelUserSelection extends JPanel{
         	
             String username = JOptionPane.showInputDialog(null, "username:");
             String password = JOptionPane.showInputDialog(null, "password:");
-            if(username=="" && password=="") {
+            if(username=="" && password=="" || username==null && password==null) {
             }else {
             List<Usuario> x=gbd.obtenerUsuario();
             for (Usuario usuario : x) {

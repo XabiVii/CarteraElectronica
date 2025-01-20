@@ -90,7 +90,7 @@ public class VentanaPrincipal extends JFrame{
 		
 		navegacion.show(getContentPane(), "pUser");
 		
-    	timersalvapantallas = new Timer(30000, e -> {
+    	timersalvapantallas = new Timer(60000, e -> {
             navegacion.show(getContentPane(), "pSalva");
         });
     	
@@ -122,7 +122,7 @@ public class VentanaPrincipal extends JFrame{
         if (timersalvapantallas.isRunning()) {
             timersalvapantallas.stop(); //detiene el timer
         }
-    	timersalvapantallas = new Timer(30000, e -> {
+    	timersalvapantallas = new Timer(60000, e -> {
             navegacion.show(getContentPane(), "pSalva");
         });    
     	timersalvapantallas.start();

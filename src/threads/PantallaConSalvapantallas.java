@@ -17,7 +17,7 @@ public class PantallaConSalvapantallas {
     	this.ventanaPrincipal = ventanaPrincipal;
     	this.navegacion=navegacion;
     	//2 minutos de incactividad para que se inice
-    	timersalvapantallas = new Timer(30000, e -> {
+    	timersalvapantallas = new Timer(60000, e -> {
             navegacion.show(ventanaPrincipal.getContentPane(), "pSalva");
         });
     	
@@ -48,7 +48,7 @@ public class PantallaConSalvapantallas {
         if (timersalvapantallas.isRunning()) {
             timersalvapantallas.stop(); //detiene el timer
         }
-    	timersalvapantallas = new Timer(30000, e -> {
+    	timersalvapantallas = new Timer(60000, e -> {
             navegacion.show(ventanaPrincipal.getContentPane(), "pSalva");
         });    
     	System.out.println("holaa");
