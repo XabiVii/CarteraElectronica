@@ -14,9 +14,6 @@ import threads.SalvaPantallas;
 
 public class VentanaPrincipal extends JFrame{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -49,8 +46,6 @@ public class VentanaPrincipal extends JFrame{
 	navegacion=new CardLayout();
 	setLayout(navegacion);
 	
-
-	
 	añadirPaneles();
 		
 	iconoCartera=new ImageIcon("resources/images/CarteraIcono.png").getImage();
@@ -72,13 +67,11 @@ public class VentanaPrincipal extends JFrame{
 		
 		panelSalvaPantallas=new SalvaPantallas(navegacion);
 
-		
 		navegacion.addLayoutComponent(panelTabla, "pTabla");
 		navegacion.addLayoutComponent(panelUser, "pUser");
 		navegacion.addLayoutComponent(panelCreacionUsuario, "pCrea");
 		navegacion.addLayoutComponent(panelNuevoOpe, "pNuevo");
 		navegacion.addLayoutComponent(panelSalvaPantallas, "pSalva");
-
 
 		add(panelTabla);
 		add(panelUser);
