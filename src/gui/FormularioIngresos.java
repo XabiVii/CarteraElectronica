@@ -23,7 +23,7 @@ public class FormularioIngresos extends  JPanel{
 		private BorderLayout borderLayout;
 		private GridLayout gridLayout;
 		private CardLayout cardLayout;
-		
+
 	public FormularioIngresos(CardLayout cardLayout,PanelTabla principal) {
 		super();
 		
@@ -62,6 +62,22 @@ public class FormularioIngresos extends  JPanel{
 		// Vamos con los datos que introduce el usuario:
 		
 		JComboBox<IngresoGasto> opciones = new JComboBox<IngresoGasto>(IngresoGasto.values());
+		
+		class CambioColor extends Thread {
+			public void run() {
+				while(true) {
+					if (opciones.getSelectedItem() == IngresoGasto.INGRESO) {
+						opciones.setBackground(Color.green);
+					} else if (opciones.getSelectedItem() == IngresoGasto.GASTO) {
+						opciones.setBackground(Color.red);
+					}
+				}
+			}
+		}
+		
+		Thread colores = new Thread(new CambioColor());
+		colores.start();
+		
 		JTextField cantidad = new JTextField();
 		
 		// Para fechas 
@@ -208,6 +224,6 @@ public class FormularioIngresos extends  JPanel{
 		JPanel oeste = new JPanel();
 		// Como el este
 		add(oeste, BorderLayout.WEST);
-	}
+	}	
 }
 
