@@ -17,6 +17,7 @@ public class GestorBD {
 	protected static String DRIVER_NAME;
 	protected static String DB_FILE;
 	protected static String CONNECTION_STRING;
+	
 	@SuppressWarnings("unused")
 	private static int id_Operacion = 1;
 	private static int id_userActual = 1;
