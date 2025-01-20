@@ -14,8 +14,7 @@ public class MainCartera {
 		gestorBD.crearTablas();
 		SwingUtilities.invokeLater(() -> new VentanaPrincipal());
 
-		CreacionRecursiva x= new CreacionRecursiva();
-		x.copiaSeguridadResources();
+
 	}
 
 }

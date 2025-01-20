@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import domain.Usuario;
 import persistencia.GestorBD;
+import recursividad.CreacionRecursiva;
 
 public class PanelUserSelection extends JPanel{
 	
@@ -35,6 +36,9 @@ public class PanelUserSelection extends JPanel{
         registro.setFont(new Font("Arial", Font.BOLD, 14));
         gbd=new GestorBD();
         this.setBackground(new Color(90,90,90));
+        JButton copiaSeguridadRecusiva = new JButton("Hacer Copia de seguridad Recursiva");
+        copiaSeguridadRecusiva.setFont(new Font("Arial", Font.BOLD, 14));
+        
         
         cardLayout = navegacion;
         cardPanel = new JPanel(cardLayout);
@@ -50,7 +54,8 @@ public class PanelUserSelection extends JPanel{
         
         add(registro,BorderLayout.CENTER);
         add(nuevoUsuarioFotoPrueba,BorderLayout.CENTER);
-        
+        add(copiaSeguridadRecusiva,BorderLayout.SOUTH);
+
         //crear el panel de añadir texto
 
         
@@ -61,6 +66,12 @@ public class PanelUserSelection extends JPanel{
         nuevoUsuarioFotoPrueba.addActionListener(e -> {
             cardLayout.show(getParent(), "pCrea"); 
         });
+        
+        copiaSeguridadRecusiva.addActionListener(e -> {
+    		CreacionRecursiva x= new CreacionRecursiva();
+    		x.copiaSeguridadResources();
+            JOptionPane.showMessageDialog(null, "Copia de seguridad creada con exito.");
+    		});
         
         //Cancelar
        /* panelCreacionUsuario.getCancelarButton().addActionListener(e -> {
@@ -74,6 +85,8 @@ public class PanelUserSelection extends JPanel{
         	
             String username = JOptionPane.showInputDialog(null, "username:");
             String password = JOptionPane.showInputDialog(null, "password:");
+            if(username=="" && password=="") {
+            }else {
             List<Usuario> x=gbd.obtenerUsuario();
             for (Usuario usuario : x) {
             	System.out.println(usuario);
@@ -87,6 +100,7 @@ public class PanelUserSelection extends JPanel{
                 	}
                 }
                 JOptionPane.showMessageDialog(null, "Invalido");
+            }
         });
         
     }

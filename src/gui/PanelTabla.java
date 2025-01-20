@@ -64,6 +64,7 @@ public class PanelTabla extends JPanel {
 		scrollPaneTabla = new JScrollPane(tabla);
 		scrollPaneTabla.setBorder(new TitledBorder("Semana1"));
 		scrollPaneTabla.setPreferredSize(new Dimension(100, 100));
+		scrollPaneTabla.getViewport().setBackground(new Color(90,90,90));
 
 		JPanel x = new JPanel();
 		GridLayout gridLayout = new GridLayout(1, 3);
@@ -118,7 +119,7 @@ public class PanelTabla extends JPanel {
 		
 		tabla = new JTable(modeloDatos);
 		tabla.getTableHeader().setReorderingAllowed(false);
-
+		tabla.setBackground(new Color(90,90,90));
 		TableCellRenderer tableCell = new TableCellRenderer() {
 
 			@Override
@@ -132,7 +133,7 @@ public class PanelTabla extends JPanel {
 					if (hasFocus) {
 						c = table.getSelectionBackground();
 					} else {
-						c = new Color(250, 249, 249);
+						c = new Color(90, 90, 90);
 						if (column==3 && value.toString().equals("INGRESO")) {
 							c=Color.GREEN;
 						}else if(column==3 && value.toString().equals("GASTO")) {
@@ -152,7 +153,7 @@ public class PanelTabla extends JPanel {
 					if (hasFocus) {
 						c = table.getSelectionBackground();
 					} else {
-						c = new Color(190, 227, 219);
+						c = new Color(120, 120, 120);
 						if (column==3 && value.toString().equals("INGRESO")) {
 							c=Color.GREEN;
 						}else if(column==3 && value.toString().equals("GASTO")) {
@@ -186,7 +187,7 @@ public class PanelTabla extends JPanel {
 				JLabel x = new JLabel(value.toString());
 				x.setHorizontalAlignment(0);
 
-			return x;}
+				return x;}
 		});
 		// Se modifica el modelo de selección de la tabla para que se pueda selecciona
 		// únicamente una fila
